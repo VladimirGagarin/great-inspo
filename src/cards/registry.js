@@ -36,7 +36,11 @@ import ChatCard from './ChatCard';
 import RippedCard from './RippedCard';
 import VisualizerCard from './VisualizerCard';
 import VinylCard from './VinylCard';
-import BountyPostyCard from './BountyPostyCard';
+import TwitchCard from './TwitchCard';
+import GitHubCard from './GitHubCard';
+import WikipediaCard from './WikipediaCard';
+import ResumeCard from './ResumeCard';
+import HackerNewsCard from './HackerNewsCard';
 
 export const CARDS = {
   x: XCard,
@@ -79,4 +83,9 @@ export const CARDS = {
   vinyl: VinylCard,
   'bounty-posty': BountyPostyCard,
   bounty_posty: BountyPostyCard,
+  twitch: TwitchCard,
+  github: GitHubCard,
+  wikipedia: WikipediaCard,
+  resume: ResumeCard,
+  hackernews: HackerNewsCard,
 };

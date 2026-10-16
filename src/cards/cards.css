@@ -3727,3 +3727,18 @@
 .sc-bp-footer { display:flex; gap:10px; padding:12px 14px; border-top:1px dashed rgba(139,115,85,0.4); font-size:12px; opacity:.85; }
 .sc-bp-author { font-weight:700; }
 .sc-bp-handle { opacity:.7; }
+
+
+/* Twitch */ .sc-tw { display:flex; flex-direction:column; gap:10px; padding:14px; background:#0f0e13; color:#fff } .sc-tw-head { display:flex; align-items:center; justify-content:space-between } .sc-tw-left { display:flex; align-items:center; gap:10px } .sc-tw-name { display:flex; align-items:center; gap:6px; font-weight:700 } .sc-tw-handle { opacity:.6; font-size:12px } .sc-tw-live { padding:2px 6px; border-radius:4px; color:#000; font-size:11px; font-weight:800; letter-spacing:.2px } .sc-tw-title { font-weight:700; font-size:18px; line-height:1.25 } .sc-tw-meta { opacity:.7; font-size:13px }
+
+
+/* GitHub */ .sc-gh { display:flex; flex-direction:column; gap:12px; padding:18px; background:#f6f8fa; color:#24292f } .sc-gh-head { display:flex; justify-content:space-between; font-size:12px; opacity:.8 } .sc-gh-badge { border:1px solid rgba(27,31,36,.15); border-radius:12px; padding:2px 6px } .sc-gh-dot { display:inline-block; width:8px; height:8px; border-radius:50%; background:#f1e05a; margin-right:6px } .sc-gh-title { font-weight:700; font-size:18px } .sc-gh-desc { font-size:14px; opacity:.85 } .sc-gh-meta { display:flex; gap:12px; font-size:13px; opacity:.7 } .sc-gh-commit { display:flex; align-items:center; gap:8px; font-size:13px; opacity:.85 }
+
+
+/* Wikipedia */ .sc-wiki { display:flex; flex-direction:column; gap:12px; padding:18px; background:#f8f9fa; color:#202122 } .sc-wiki-head { display:flex; gap:12px; align-items:center } .sc-wiki-logo { width:28px; height:28px; border:1px solid #a2a9b1; display:flex; align-items:center; justify-content:center; font-weight:800 } .sc-wiki-title { font-weight:700; font-size:17px } .sc-wiki-sub { font-size:12px; opacity:.7 } .sc-wiki-rule { height:1px; background:#a2a9b1; opacity:.3 } .sc-wiki-body { font-size:14px; line-height:1.4 } .sc-wiki-footer { font-size:12px; opacity:.7 }
+
+
+/* Resume */ .sc-res { display:flex; flex-direction:column; gap:14px; padding:18px; background:#fff; color:#1a1a1a } .sc-res-head { display:flex; gap:14px; align-items:center } .sc-res-name { font-weight:800; font-size:18px } .sc-res-role { opacity:.7 } .sc-res-body { font-size:14px; line-height:1.45 } .sc-res-skills { display:flex; flex-wrap:wrap; gap:8px } .sc-res-skill { padding:4px 8px; border-radius:12px; background:rgba(26,54,93,.08); font-size:12px } .sc-res-foot { font-size:12px; opacity:.7 }
+
+
+/* Hacker News */ .sc-hn { display:flex; flex-direction:column; gap:10px; padding:14px; background:#f6f6ef; color:#000 } .sc-hn-head { display:flex; gap:8px; align-items:center; font-weight:700; font-size:13px; opacity:.8 } .sc-hn-logo { width:18px; height:18px; background:#ff6600; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:800 } .sc-hn-item { display:flex; gap:10px } .sc-hn-rank { opacity:.6 } .sc-hn-main { flex:1 } .sc-hn-linkline { font-size:14px } .sc-hn-domain { opacity:.6; font-size:12px; margin-left:4px } .sc-hn-sub { font-size:12px; opacity:.6 } .sc-hn-comments { margin-top:4px; font-size:13px; opacity:.8 }

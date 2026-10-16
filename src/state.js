@@ -38,6 +38,11 @@ export const TEMPLATES = [
   { id: 'visualizer', name: 'Visualizer', hint: 'Audio bars', cat: 'aesthetic' },
   { id: 'vinyl', name: 'Vinyl', hint: 'Album + record', cat: 'aesthetic' },
   { id: 'bounty-posty', name: 'Bounty Posty', hint: 'Old paper bounty poster', cat: 'aesthetic', premium: true },
+  { id: 'twitch', name: 'Twitch', hint: 'Stream preview', cat: 'social' },
+  { id: 'github', name: 'GitHub', hint: 'Repo/commit style', cat: 'social' },
+  { id: 'wikipedia', name: 'Wikipedia', hint: 'Article snapshot', cat: 'social', premium: true },
+  { id: 'resume', name: 'Resume Card', hint: 'Mini CV', cat: 'social', premium: true },
+  { id: 'hackernews', name: 'Hacker News', hint: 'Front page post', cat: 'social', premium: true },
 ];
 
 export const templateSupportsComments = (id) => Boolean(TEMPLATES.find((t) => t.id === id)?.comments);

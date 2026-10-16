@@ -1,13 +1,13 @@
 import { Photo, Avatar } from './shared';
-import { cardBackground, cardVars, accentOf } from './helpers';
+import { cardBackground, cardVars } from './helpers';
 import { Verified } from './icons';
 import { formatCount } from '../lib/format';
 
 export default function TwitchCard({ cfg }) {
   const bg = cardBackground(cfg, '#0f0e13', '#050507');
-  const accent = accentOf(cfg.template);
+  const accent = cfg.style?.accent || '#a970ff';
   return (
-    <div className="card-root sc-tw" style={cardVars(bg, accent)}>
+    <div className="card-root sc-tw" style={cardVars(cfg, { accent, bg })}>
       <div className="sc-tw-head">
         <div className="sc-tw-left">
           <Avatar cfg={cfg} size={36} />

@@ -2,7 +2,8 @@ import { Body } from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 
 export default function BountyPostyCard({ cfg }) {
-  const accent = accentOf(cfg.template);
+  const accent = cfg.style?.accent || '#b89a75';
+  
   const bg = cardBackground(cfg, '#f3e7d7', '#151412');
 
   return (
