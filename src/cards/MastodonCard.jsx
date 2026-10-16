@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Repost, Reply, Star, Bookmark, ShareArrow, Globe, Dots } from './icons';
 import { formatCount, formatFull } from '../lib/format';
@@ -35,7 +35,7 @@ export default function MastodonCard({ cfg, api }) {
         <span className="sc-mst-menu"><Dots size={17} /></span>
       </div>
 
-      <div className="sc-mst-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>{cfg.body}</div>
+      <div className="sc-mst-body" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={cfg.body} /></div>
 
       <div className="sc-mst-photowrap">
         <Photo cfg={cfg} api={api} ratio="16 / 9" radius={Math.min(cfg.style.radius, 10)} border="1px solid var(--line)" />

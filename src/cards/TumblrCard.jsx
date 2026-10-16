@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Heart, Repost, Reply, Dots } from './icons';
 import { formatFull, initials, hashHue } from '../lib/format';
@@ -14,7 +14,7 @@ export default function TumblrCard({ cfg, api }) {
         <Avatar cfg={cfg} size={26} />
         <div className="sc-tmb-maintext">
           <span className="sc-tmb-name">{cfg.handle.replace(/^@/, '')}</span>
-          <div className="sc-tmb-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>{cfg.body}</div>
+          <div className="sc-tmb-body" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={cfg.body} /></div>
           <div className="sc-tmb-photowrap">
             <Photo cfg={cfg} api={api} ratio="16 / 10" radius={Math.min(cfg.style.radius, 6)} />
           </div>
@@ -37,7 +37,7 @@ export default function TumblrCard({ cfg, api }) {
                   {c.name}
                   {c.verified && <i className="sc-tmb-tick">✓</i>}
                 </span>
-                <span className="sc-tmb-reblogmsg">{c.text}</span>
+                <span className="sc-tmb-reblogmsg"><Body text={c.text} /></span>
               </div>
               <Reply size={14} color="var(--muted)" />
             </div>

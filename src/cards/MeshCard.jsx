@@ -1,5 +1,5 @@
 import { accentOf, cardBackground, cardVars } from './helpers';
-import { Avatar } from './shared';
+import { Avatar, Body} from './shared';
 
 export default function MeshCard({ cfg }) {
   const accent = accentOf(cfg, '#ec4899');
@@ -16,7 +16,7 @@ export default function MeshCard({ cfg }) {
           <Avatar cfg={cfg} size={34} />
           <span className="sc-mesh-name">{cfg.author}</span>
         </div>
-        <div className="sc-mesh-body" style={{ fontSize: `${cfg.style.fontSize + 3}px` }}>{cfg.body}</div>
+        <div className="sc-mesh-body" style={{ fontSize: `${cfg.style.fontSize + 3}px` }}><Body text={cfg.body} /></div>
         <div className="sc-mesh-foot">{cfg.timestamp}</div>
       </div>
     </div>

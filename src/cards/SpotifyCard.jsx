@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Dots, PlayFilled, PauseFilled, SkipPrev, SkipNext, Shuffle, Repeat, HeartFilledSmall, ShareArrow } from './icons';
 import { formatCount } from '../lib/format';
@@ -28,7 +28,7 @@ export default function SpotifyCard({ cfg, api }) {
 
       <div className="sc-sp-meta">
         <div className="sc-sp-titleblock">
-          <div className="sc-sp-title" style={{ fontSize: `${cfg.style.fontSize + 5}px` }}>{cfg.body}</div>
+          <div className="sc-sp-title" style={{ fontSize: `${cfg.style.fontSize + 5}px` }}><Body text={cfg.body} /></div>
           <div className="sc-sp-artist">
             <Avatar cfg={cfg} size={20} />
             <span>{cfg.author}</span>

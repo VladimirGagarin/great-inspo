@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { CommentIcon, Dots } from './icons';
 import { formatCount, formatFull } from '../lib/format';
@@ -20,7 +20,7 @@ export default function WeChatCard({ cfg, api }) {
         <Avatar cfg={cfg} size={44} />
         <div className="sc-wc-content">
           <span className="sc-wc-name">{cfg.author}</span>
-          <div className="sc-wc-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>{cfg.body}</div>
+          <div className="sc-wc-body" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={cfg.body} /></div>
           <div className="sc-wc-photowrap">
             <Photo cfg={cfg} api={api} ratio="4 / 3" radius={6} className="sc-wc-image" />
           </div>
@@ -40,7 +40,7 @@ export default function WeChatCard({ cfg, api }) {
             {cfg.show.comments && (
               <div className="sc-wc-comments">
                 {comments.map((c, i) => (
-                  <p key={i}><b>{c.name}{c.verified && <i className="sc-wc-tick">✓</i>}:</b> {c.text}</p>
+                  <p key={i}><b>{c.name}{c.verified && <i className="sc-wc-tick">✓</i>}:</b> <Body text={c.text} /></p>
                 ))}
                 <p className="sc-wc-viewall">
                   <CommentIcon size={13} />

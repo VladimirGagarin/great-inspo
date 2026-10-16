@@ -1,5 +1,6 @@
-import { useContext, useRef } from 'react';
+import { useContext, useMemo, useRef } from 'react';
 import { initials, hashHue } from '../lib/format';
+import { tokenize } from '../lib/tokenize';
 import { PlatformLogo } from './logos';
 import { ALIGN_POS } from '../state';
 import { AvatarCtx } from './ctx';
@@ -199,5 +200,22 @@ export function Watermark({ cfg }) {
     <div className="sc-watermark" aria-hidden="true">
       <PlatformLogo id={cfg.template} size={16} />
     </div>
+  );
+}
+
+export function Body({ text, className = '', style = null }) {
+  const parts = useMemo(() => tokenize(text), [text]);
+  return (
+    <span className={className} style={style}>
+      {parts.map((p, i) =>
+        typeof p === 'string' ? (
+          p
+        ) : (
+          <span key={i} className={`sc-tok sc-tok-${p.k}`}>
+            {p.t}
+          </span>
+        ),
+      )}
+    </span>
   );
 }

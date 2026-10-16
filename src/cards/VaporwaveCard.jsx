@@ -1,3 +1,4 @@
+import { Body } from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 
 export default function VaporwaveCard({ cfg }) {
@@ -14,7 +15,7 @@ export default function VaporwaveCard({ cfg }) {
       <div className="sc-vw-gridlines" />
       <div className="sc-vw-content">
         <div className="sc-vw-kicker">// NOW PLAYING</div>
-        <div className="sc-vw-title" style={{ fontSize: `${cfg.style.fontSize + 10}px` }}>{cfg.body}</div>
+        <div className="sc-vw-title" style={{ fontSize: `${cfg.style.fontSize + 10}px` }}><Body text={cfg.body} /></div>
         <div className="sc-vw-author">{cfg.author}</div>
         <div className="sc-vw-meta">{cfg.timestamp}</div>
       </div>

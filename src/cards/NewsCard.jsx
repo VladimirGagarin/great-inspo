@@ -1,3 +1,4 @@
+import { Body } from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 
 export default function NewsCard({ cfg }) {
@@ -10,7 +11,7 @@ export default function NewsCard({ cfg }) {
         <span className="sc-nw-flash">● LIVE</span>
         <span>BREAKING NEWS</span>
       </div>
-      <div className="sc-nw-headline" style={{ fontSize: `${cfg.style.fontSize + 10}px` }}>{cfg.body}</div>
+      <div className="sc-nw-headline" style={{ fontSize: `${cfg.style.fontSize + 10}px` }}><Body text={cfg.body} /></div>
       <div className="sc-nw-source">
         <span className="sc-nw-srcname">{cfg.author}</span>
         <span className="sc-nw-time">{cfg.timestamp}</span>
@@ -19,7 +20,7 @@ export default function NewsCard({ cfg }) {
         <span className="sc-nw-tickerlabel" style={{ background: accent }}>NEWS</span>
         <div className="sc-nw-tickerwin">
           <span className="sc-nw-tickertext">
-            {cfg.body} · More details developing · Stay tuned for updates · {cfg.author} reporting ·
+            <Body text={cfg.body} /> · More details developing · Stay tuned for updates · {cfg.author} reporting ·
           </span>
         </div>
       </div>

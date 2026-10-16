@@ -1,5 +1,5 @@
 import { accentOf, cardBackground, cardVars } from './helpers';
-import { Avatar } from './shared';
+import { Avatar, Body} from './shared';
 import { Heart, CommentIcon } from './icons';
 import { formatCount } from '../lib/format';
 
@@ -17,7 +17,7 @@ export default function NeuCard({ cfg }) {
             <span className="sc-ne-handle">{cfg.handle}</span>
           </div>
         </div>
-        <div className="sc-ne-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>{cfg.body}</div>
+        <div className="sc-ne-body" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={cfg.body} /></div>
         <div className="sc-ne-actions">
           <span className="sc-ne-btn"><Heart size={17} color={accent} />{cfg.show.likes ? formatCount(cfg.stats.likes) : ''}</span>
           <span className="sc-ne-btn"><CommentIcon size={16} color={accent} />{cfg.show.comments ? formatCount(cfg.stats.comments) : ''}</span>

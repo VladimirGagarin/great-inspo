@@ -1,3 +1,4 @@
+import { Body } from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 
 export default function QuoteCard({ cfg }) {
@@ -22,7 +23,7 @@ export default function QuoteCard({ cfg }) {
           className="sc-quote-text"
           style={{ fontSize: `${Math.round(cfg.style.fontSize * 2.4)}px` }}
         >
-          {cfg.body}
+          <Body text={cfg.body} />
         </p>
         <div className="sc-quote-rule" style={{ background: accent }} />
         <div className="sc-quote-author">

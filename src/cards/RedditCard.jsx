@@ -1,4 +1,4 @@
-import { Photo } from './shared';
+import { Photo, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { RedditArrow, CommentIcon, ShareArrow, Bookmark, Dots, Plus } from './icons';
 import { formatCount, hashHue, initials } from '../lib/format';
@@ -31,7 +31,7 @@ export default function RedditCard({ cfg, api }) {
       </div>
 
       <div className="sc-rd-body" style={{ fontSize: `${Math.max(cfg.style.fontSize, 15)}px` }}>
-        {cfg.body}
+        <Body text={cfg.body} />
       </div>
 
       <div className="sc-rd-photowrap">

@@ -1,5 +1,5 @@
 import { accentOf, cardBackground, cardVars } from './helpers';
-import { Photo } from './shared';
+import { Photo, Body} from './shared';
 
 export default function RippedCard({ cfg, api }) {
   const accent = accentOf(cfg, '#a16207');
@@ -12,7 +12,7 @@ export default function RippedCard({ cfg, api }) {
         <span className="sc-rp-edge" />
       </div>
       <div className="sc-rp-paper">
-        <div className="sc-rp-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>{cfg.body}</div>
+        <div className="sc-rp-body" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={cfg.body} /></div>
         <div className="sc-rp-sub">
           <span className="sc-rp-author">{cfg.author}</span>
           <span>{cfg.timestamp}</span>

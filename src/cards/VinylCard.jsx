@@ -1,5 +1,5 @@
 import { accentOf, cardBackground, cardVars } from './helpers';
-import { Photo } from './shared';
+import { Photo, Body} from './shared';
 import { PlayFilled, Heart, ShareArrow } from './icons';
 import { formatCount } from '../lib/format';
 
@@ -18,7 +18,7 @@ export default function VinylCard({ cfg, api }) {
           <span className="sc-vn-label" style={{ background: accent }} />
         </div>
       </div>
-      <div className="sc-vn-title" style={{ fontSize: `${cfg.style.fontSize + 4}px` }}>{cfg.body}</div>
+      <div className="sc-vn-title" style={{ fontSize: `${cfg.style.fontSize + 4}px` }}><Body text={cfg.body} /></div>
       <div className="sc-vn-artist">{cfg.author}</div>
       <div className="sc-vn-bar">
         <span className="sc-vn-bar-fill" style={{ width: `${cfg.player?.progress ?? 43}%` }} />

@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Heart, Repost, Reply, Quote, Dots } from './icons';
 import { formatCount, formatFull } from '../lib/format';
@@ -22,7 +22,7 @@ export default function BlueskyCard({ cfg, api }) {
         <span className="sc-bsky-menu"><Dots size={18} /></span>
       </div>
 
-      <div className="sc-bsky-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>{cfg.body}</div>
+      <div className="sc-bsky-body" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={cfg.body} /></div>
 
       <div className="sc-bsky-photowrap">
         <Photo cfg={cfg} api={api} ratio="16 / 9" radius={Math.min(cfg.style.radius, 10)} border="1px solid var(--line)" />

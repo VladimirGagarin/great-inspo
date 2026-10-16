@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Eye, Bookmark, ShareArrow, Reply, Dots, Verified } from './icons';
 import { formatCount } from '../lib/format';
@@ -31,7 +31,7 @@ export default function TelegramCard({ cfg, api }) {
         <b style={{ color: accent }}>{cfg.author}</b>
       </div>
 
-      <div className="sc-tg-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>{cfg.body}</div>
+      <div className="sc-tg-body" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={cfg.body} /></div>
 
       <div className="sc-tg-photowrap">
         <Photo cfg={cfg} api={api} ratio="16 / 9" radius={Math.min(cfg.style.radius, 12)} />

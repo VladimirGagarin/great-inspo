@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Heart, CommentIcon, Send } from './icons';
 import { formatCount } from '../lib/format';
@@ -27,7 +27,7 @@ export default function SnapchatCard({ cfg, api }) {
         </div>
 
         <div className="sc-sn-caption">
-          <div className="sc-sn-text" style={{ fontSize: `${cfg.style.fontSize + 2}px` }}>{cfg.body}</div>
+          <div className="sc-sn-text" style={{ fontSize: `${cfg.style.fontSize + 2}px` }}><Body text={cfg.body} /></div>
           <div className="sc-sn-row">
             <span className="sc-sn-ico"><Heart size={20} color="#fff" filled /></span>
             <span className="sc-sn-count">{cfg.show.likes ? formatCount(cfg.stats.likes) : ''}</span>

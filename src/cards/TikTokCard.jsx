@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Heart, CommentIcon, ShareArrow, Bookmark, ReplyArrow, Plus, Dots } from './icons';
 import { formatCount, formatFull } from '../lib/format';
@@ -31,7 +31,7 @@ export default function TikTokCard({ cfg, api }) {
       <div className="sc-tt-main">
         <div className="sc-tt-content">
           <div className="sc-tt-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>
-            {cfg.body}
+            <Body text={cfg.body} />
           </div>
           <div className="sc-tt-photowrap">
             <Photo cfg={cfg} api={api} ratio="16 / 9" radius={Math.min(cfg.style.radius, 6)} />

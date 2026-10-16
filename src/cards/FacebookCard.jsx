@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Globe, Dots, ThumbUp, CommentIcon, Repost } from './icons';
 import { formatCount } from '../lib/format';
@@ -26,7 +26,7 @@ export default function FacebookCard({ cfg, api }) {
       </div>
 
       <div className="sc-fb-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>
-        {cfg.body}
+        <Body text={cfg.body} />
       </div>
 
       <div className="sc-fb-photowrap">

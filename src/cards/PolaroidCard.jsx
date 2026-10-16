@@ -1,5 +1,5 @@
 import { accentOf, cardBackground, cardVars } from './helpers';
-import { Photo } from './shared';
+import { Photo, Body} from './shared';
 
 export default function PolaroidCard({ cfg, api }) {
   const accent = accentOf(cfg, '#b45309');
@@ -11,7 +11,7 @@ export default function PolaroidCard({ cfg, api }) {
         <div className="sc-po-photowrap">
           <Photo cfg={cfg} api={api} ratio="1 / 1" radius={0} />
         </div>
-        <div className="sc-po-caption" style={{ fontSize: `${cfg.style.fontSize + 2}px` }}>{cfg.body}</div>
+        <div className="sc-po-caption" style={{ fontSize: `${cfg.style.fontSize + 2}px` }}><Body text={cfg.body} /></div>
         <div className="sc-po-sub">
           <span>{cfg.author}</span>
           <span className="sc-po-dot">·</span>

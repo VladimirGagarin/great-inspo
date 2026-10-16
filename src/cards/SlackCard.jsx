@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Reply, Dots, Bookmark, ShareArrow } from './icons';
 import { formatCount, initials, hashHue } from '../lib/format';
@@ -25,7 +25,7 @@ export default function SlackCard({ cfg, api }) {
             <span className="sc-sl-name">{cfg.author}</span>
             <span className="sc-sl-time">{cfg.timestamp}</span>
           </div>
-          <div className="sc-sl-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>{cfg.body}</div>
+          <div className="sc-sl-body" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={cfg.body} /></div>
           <div className="sc-sl-attach">
             <Photo cfg={cfg} api={api} ratio="16 / 9" radius={8} border="1px solid var(--line)" />
           </div>

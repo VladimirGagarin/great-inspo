@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Heart, CommentIcon, Send, Bookmark, Dots, Verified } from './icons';
 import { formatFull } from '../lib/format';
@@ -42,7 +42,7 @@ export default function InstagramCard({ cfg, api }) {
 
         <div className="sc-ig-caption" style={{ fontSize: `${cfg.style.fontSize - 1}px` }}>
           <span className="sc-ig-capname">{cfg.handle.replace(/^@/, '')}</span>
-          {cfg.body}
+          <Body text={cfg.body} />
         </div>
 
         {cfg.show.comments && cfg.stats.comments > 0 && (

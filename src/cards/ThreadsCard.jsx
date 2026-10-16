@@ -1,4 +1,4 @@
-import { Photo, Avatar, Metric } from './shared';
+import { Photo, Avatar, Metric, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Heart, Repost, Send, CommentIcon, Dots, Verified } from './icons';
 import { formatCount, formatFull } from '../lib/format';
@@ -30,7 +30,7 @@ export default function ThreadsCard({ cfg, api }) {
       </div>
 
       <div className="sc-th-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>
-        {cfg.body}
+        <Body text={cfg.body} />
       </div>
 
       <div className="sc-th-photowrap">

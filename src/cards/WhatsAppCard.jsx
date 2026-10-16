@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Check, Dots } from './icons';
 
@@ -29,7 +29,7 @@ export default function WhatsAppCard({ cfg, api }) {
         <div className="sc-wa-bubble" style={{ '--wa-accent': accent }}>
           <Photo cfg={cfg} api={api} ratio="16 / 9" radius={6} className="sc-wa-photo" />
           <div className="sc-wa-text" style={{ fontSize: `${cfg.style.fontSize + 1}px` }}>
-            {cfg.body}
+            <Body text={cfg.body} />
             <span className="sc-wa-time">
               {time}
               <span className="sc-wa-checks">

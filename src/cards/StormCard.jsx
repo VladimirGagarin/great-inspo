@@ -1,5 +1,5 @@
 import { accentOf, cardBackground, cardVars } from './helpers';
-import { Avatar } from './shared';
+import { Avatar, Body } from './shared';
 import { Dots, Heart, Reply } from './icons';
 import { formatCount } from '../lib/format';
 
@@ -27,7 +27,7 @@ export default function StormCard({ cfg }) {
               <span className="sc-st-handle">{p.handle}</span>
               {i === 0 && <span className="sc-st-menu"><Dots size={15} /></span>}
             </div>
-            <div className="sc-st-text" style={{ fontSize: `${cfg.style.fontSize}px` }}>{p.text}</div>
+            <div className="sc-st-text" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={p.text} /></div>
             {i === 0 && (
               <div className="sc-st-metrics">
                 <span><Reply size={14} />{cfg.show.comments ? formatCount(cfg.stats.comments) : ''}</span>

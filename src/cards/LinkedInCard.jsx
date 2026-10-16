@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Globe, Dots, CommentIcon, Send, ThumbUp } from './icons';
 import { formatCount, formatFull } from '../lib/format';
@@ -30,7 +30,7 @@ export default function LinkedInCard({ cfg, api }) {
       </div>
 
       <div className="sc-li-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>
-        {cfg.body}
+        <Body text={cfg.body} />
       </div>
 
       <div className="sc-li-photowrap">

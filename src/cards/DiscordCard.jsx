@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Reply, Dots, Plus } from './icons';
 import { formatCount } from '../lib/format';
@@ -32,7 +32,7 @@ export default function DiscordCard({ cfg, api }) {
             <span className="sc-dc-bot">APP</span>
             <span className="sc-dc-time">{cfg.timestamp}</span>
           </div>
-          <div className="sc-dc-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>{cfg.body}</div>
+          <div className="sc-dc-body" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={cfg.body} /></div>
           <div className="sc-dc-attach">
             <Photo cfg={cfg} api={api} ratio="16 / 9" radius={8} />
           </div>

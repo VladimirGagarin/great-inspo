@@ -1,4 +1,4 @@
-import { Photo } from './shared';
+import { Photo, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Dots, PlayFilled, SkipPrev, SkipNext, ShareArrow, Bookmark } from './icons';
 import { formatCount } from '../lib/format';
@@ -26,7 +26,7 @@ export default function PodcastCard({ cfg, api }) {
         </div>
         <div className="sc-pc-text">
           <div className="sc-pc-show">{cfg.author}</div>
-          <div className="sc-pc-title" style={{ fontSize: `${cfg.style.fontSize + 3}px` }}>{cfg.body}</div>
+          <div className="sc-pc-title" style={{ fontSize: `${cfg.style.fontSize + 3}px` }}><Body text={cfg.body} /></div>
           <div className="sc-pc-ep">{cfg.timestamp}</div>
           <div className="sc-pc-progress">
             <span className="sc-pc-progress-fill" style={{ width: `${cfg.player?.progress ?? 43}%` }}>

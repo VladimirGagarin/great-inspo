@@ -1,3 +1,4 @@
+import { Body } from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 
 export default function MinimalCard({ cfg }) {
@@ -11,7 +12,7 @@ export default function MinimalCard({ cfg }) {
         <span className="sc-min-index">№ 01</span>
       </div>
       <div className="sc-min-rule" style={{ background: accent }} />
-      <div className="sc-min-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>{cfg.body}</div>
+      <div className="sc-min-body" style={{ fontSize: `${cfg.style.fontSize}px` }}><Body text={cfg.body} /></div>
       <div className="sc-min-rule sc-min-rule-thin" style={{ background: accent }} />
       <div className="sc-min-foot">
         <span>{cfg.author}</span>

@@ -1,5 +1,5 @@
 import { accentOf, cardBackground, cardVars } from './helpers';
-import { Photo } from './shared';
+import { Photo, Body} from './shared';
 import { PlayFilled } from './icons';
 
 const BARS = [28, 52, 38, 70, 46, 88, 60, 34, 76, 50, 92, 42, 66, 30, 80, 54, 40, 72, 48, 62, 36, 84, 56, 44];
@@ -19,7 +19,7 @@ export default function VisualizerCard({ cfg, api }) {
           <Photo cfg={cfg} api={api} ratio="1 / 1" radius={8} height={72} />
         </div>
         <div className="sc-vz-text">
-          <div className="sc-vz-title" style={{ fontSize: `${cfg.style.fontSize + 2}px` }}>{cfg.body}</div>
+          <div className="sc-vz-title" style={{ fontSize: `${cfg.style.fontSize + 2}px` }}><Body text={cfg.body} /></div>
           <div className="sc-vz-artist">{cfg.author}</div>
         </div>
         <span className="sc-vz-play"><PlayFilled size={16} color="#fff" /></span>

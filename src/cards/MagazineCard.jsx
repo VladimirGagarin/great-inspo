@@ -1,5 +1,5 @@
 import { accentOf, cardBackground, cardVars } from './helpers';
-import { Photo } from './shared';
+import { Photo, Body} from './shared';
 
 export default function MagazineCard({ cfg, api }) {
   const accent = accentOf(cfg, '#c0392b');
@@ -11,7 +11,7 @@ export default function MagazineCard({ cfg, api }) {
         <span className="sc-mg-logo">THE DAILY</span>
         <span className="sc-mg-issue">{cfg.timestamp}</span>
       </div>
-      <div className="sc-mg-headline" style={{ fontSize: `${cfg.style.fontSize + 14}px` }}>{cfg.body}</div>
+      <div className="sc-mg-headline" style={{ fontSize: `${cfg.style.fontSize + 14}px` }}><Body text={cfg.body} /></div>
       <div className="sc-mg-photowrap">
         <Photo cfg={cfg} api={api} ratio="16 / 9" radius={2} />
       </div>

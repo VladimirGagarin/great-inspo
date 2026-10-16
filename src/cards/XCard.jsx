@@ -1,4 +1,4 @@
-import { Photo, Avatar, Metric } from './shared';
+import { Photo, Avatar, Metric, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Reply, Repost, Heart, Views, Bookmark, ShareArrow, Dots } from './icons';
 import { formatCount, formatFull } from '../lib/format';
@@ -29,7 +29,7 @@ export default function XCard({ cfg, api }) {
       </div>
 
       <div className="sc-x-body" style={{ fontSize: `${cfg.style.fontSize}px` }}>
-        {cfg.body}
+        <Body text={cfg.body} />
       </div>
 
       <div className="sc-x-photowrap">

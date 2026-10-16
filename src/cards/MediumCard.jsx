@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Bookmark, ShareArrow, Dots } from './icons';
 import { formatCount } from '../lib/format';
@@ -24,7 +24,7 @@ export default function MediumCard({ cfg, api }) {
         <span className="sc-md-dots"><Dots size={16} /></span>
       </div>
 
-      <div className="sc-md-title" style={{ fontSize: `${cfg.style.fontSize + 8}px` }}>{cfg.body}</div>
+      <div className="sc-md-title" style={{ fontSize: `${cfg.style.fontSize + 8}px` }}><Body text={cfg.body} /></div>
       <div className="sc-md-meta">
         {readMin} min read · {cfg.timestamp}
       </div>

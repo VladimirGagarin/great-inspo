@@ -1,4 +1,4 @@
-import { Photo, Avatar } from './shared';
+import { Photo, Avatar, Body} from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Dots, ShareArrow, Bookmark } from './icons';
 import { formatCount } from '../lib/format';
@@ -18,7 +18,7 @@ export default function PinterestCard({ cfg, api }) {
         <button type="button" className="sc-pin-jump"><ShareArrow size={15} /></button>
       </div>
 
-      <div className="sc-pin-title" style={{ fontSize: `${cfg.style.fontSize + 3}px` }}>{cfg.body}</div>
+      <div className="sc-pin-title" style={{ fontSize: `${cfg.style.fontSize + 3}px` }}><Body text={cfg.body} /></div>
 
       <div className="sc-pin-author">
         <Avatar cfg={cfg} size={24} />

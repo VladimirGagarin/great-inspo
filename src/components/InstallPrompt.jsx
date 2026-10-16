@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 function isIos() {
   if (typeof navigator === 'undefined') return false;
@@ -102,7 +103,7 @@ export default function InstallPrompt() {
         </svg>
       </button>
 
-      {open && (
+      {open && createPortal(
         <div className="inst-backdrop" role="dialog" aria-modal="true" aria-labelledby="inst-title" onClick={() => setOpen(false)}>
           <div className="inst-card" onClick={(e) => e.stopPropagation()}>
             <button type="button" className="coffee-close" onClick={() => setOpen(false)} aria-label="Close">
@@ -145,7 +146,8 @@ export default function InstallPrompt() {
               if you see it.
             </p>
           </div>
-        </div>
+        </div>,
+        document.body,
       )}
     </>
   );

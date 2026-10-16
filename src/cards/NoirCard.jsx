@@ -1,5 +1,5 @@
 import { accentOf, cardBackground, cardVars } from './helpers';
-import { Photo } from './shared';
+import { Photo, Body} from './shared';
 import { Dots } from './icons';
 
 export default function NoirCard({ cfg, api }) {
@@ -12,7 +12,7 @@ export default function NoirCard({ cfg, api }) {
         <span className="sc-nr-label">Noir</span>
         <span className="sc-nr-menu"><Dots size={16} /></span>
       </div>
-      <div className="sc-nr-body" style={{ fontSize: `${cfg.style.fontSize + 6}px` }}>{cfg.body}</div>
+      <div className="sc-nr-body" style={{ fontSize: `${cfg.style.fontSize + 6}px` }}><Body text={cfg.body} /></div>
       <div className="sc-nr-photowrap">
         <Photo cfg={cfg} api={api} ratio="16 / 10" radius={0} />
       </div>

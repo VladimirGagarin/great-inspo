@@ -1,3 +1,4 @@
+import { Body } from './shared';
 import { accentOf, cardBackground, cardVars } from './helpers';
 
 export default function ChatCard({ cfg }) {
@@ -27,7 +28,7 @@ export default function ChatCard({ cfg }) {
               </span>
             )}
             <div className="sc-ch-bubble" style={b.out ? { background: accent } : undefined}>
-              {b.text}
+              <Body text={b.text} />
               <span className="sc-ch-stamp">{['9:41', '9:42', '9:44', '9:45'][i] || '9:45'}</span>
             </div>
           </div>
