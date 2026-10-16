@@ -199,6 +199,7 @@ export function Watermark({ cfg }) {
   return (
     <div className="sc-watermark" aria-hidden="true">
       <PlatformLogo id={cfg.template} size={16} />
+      <span className="sc-watermark-text">GreatInpoArts</span>
     </div>
   );
 }
