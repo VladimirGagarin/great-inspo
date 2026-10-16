@@ -50,12 +50,13 @@ export default function XCard({ cfg, api }) {
             value={formatCount(cfg.stats.shares)}
             title={`${formatFull(cfg.stats.shares)} reposts`}
           />
-          <Metric
-            show={cfg.show.likes}
-            icon={<Heart size={17} />}
-            value={formatCount(cfg.stats.likes)}
-            title={`${formatFull(cfg.stats.likes)} likes`}
-          />
+            <Metric
+              show={cfg.show.likes}
+              icon={<Heart size={17} />}
+              value={formatCount(cfg.stats.likes)}
+              title={`${formatFull(cfg.stats.likes)} likes`}
+              filled={cfg.show.likesLiked}
+            />
           <Metric
             show={cfg.show.views}
             icon={<Views size={17} />}
