@@ -46,13 +46,20 @@ export default function EngagementPanel({ cfg, api }) {
               min={0}
             />
             <span className="muted">= {formatFull(cfg.stats[m.key])}</span>
-            <span className="metric-show">
-              <Switch
-                label="show"
-                checked={cfg.show[m.key]}
-                onChange={(v) => api.update((c) => ({ ...c, show: { ...c.show, [m.key]: v } }))}
-              />
-            </span>
+              <span className="metric-toggle">
+                <Switch
+                  label="Show"
+                  checked={cfg.show[m.key]}
+                  onChange={(v) => api.update((c) => ({ ...c, show: { ...c.show, [m.key]: v } }))}
+                />
+                {m.key === 'likes' && (
+                  <Switch
+                    label="Liked"
+                    checked={cfg.show[`${m.key}Liked`] ?? false}
+                    onChange={(v) => api.update((c) => ({ ...c, show: { ...c.show, [`${m.key}Liked`]: v } }))}
+                  />
+                )}
+              </span>
           </div>
         </div>
       ))}

@@ -184,11 +184,12 @@ export function Photo({
   );
 }
 
-export function Metric({ show, icon, value, title, gap = 22 }) {
+export function Metric({ show, icon, value, title, gap = 22, filled = false }) {
   if (!show) return null;
+  const node = React.isValidElement(icon) ? React.cloneElement(icon, { filled: filled || undefined }) : icon;
   return (
     <span className="sc-metric" style={{ gap }} title={title}>
-      {icon}
+      {node}
       <span className="sc-metric-count">{value}</span>
     </span>
   );
