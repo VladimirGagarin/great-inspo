@@ -37,6 +37,7 @@ export const TEMPLATES = [
   { id: 'ripped', name: 'Ripped Paper', hint: 'Torn-edge photo', cat: 'aesthetic' },
   { id: 'visualizer', name: 'Visualizer', hint: 'Audio bars', cat: 'aesthetic' },
   { id: 'vinyl', name: 'Vinyl', hint: 'Album + record', cat: 'aesthetic' },
+  { id: 'bounty-posty', name: 'Bounty Posty', hint: 'Old paper bounty poster', cat: 'aesthetic', premium: true },
 ];
 
 export const templateSupportsComments = (id) => Boolean(TEMPLATES.find((t) => t.id === id)?.comments);
@@ -80,6 +81,7 @@ export const templateWidth = (id) => {
     ripped: 440,
     visualizer: 460,
     vinyl: 480,
+    'bounty-posty': 500,
   };
   return map[id] || 500;
 };

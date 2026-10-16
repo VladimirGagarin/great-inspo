@@ -36,6 +36,7 @@ import ChatCard from './ChatCard';
 import RippedCard from './RippedCard';
 import VisualizerCard from './VisualizerCard';
 import VinylCard from './VinylCard';
+import BountyPostyCard from './BountyPostyCard';
 
 export const CARDS = {
   x: XCard,
@@ -76,4 +77,6 @@ export const CARDS = {
   ripped: RippedCard,
   visualizer: VisualizerCard,
   vinyl: VinylCard,
+  'bounty-posty': BountyPostyCard,
+  bounty_posty: BountyPostyCard,
 };
