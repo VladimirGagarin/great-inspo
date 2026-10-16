@@ -1,8 +1,9 @@
-const KEY = 'greatinspo.images.v1';
+const IMAGES_KEY = 'greatinspo.images.v1';
+const CONFIG_KEY = 'greatinspo.config.v1';
 
 export function loadImages() {
   try {
-    const raw = window.sessionStorage.getItem(KEY);
+    const raw = window.sessionStorage.getItem(IMAGES_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     if (!parsed || typeof parsed !== 'object') return null;
@@ -17,7 +18,7 @@ export function loadImages() {
 
 function writeImages(payload) {
   try {
-    window.sessionStorage.setItem(KEY, JSON.stringify(payload));
+    window.sessionStorage.setItem(IMAGES_KEY, JSON.stringify(payload));
     return true;
   } catch {
     return false;
@@ -63,7 +64,36 @@ export async function saveImages({ photoSrc = null, avatarSrc = null }) {
 
 export function clearImages() {
   try {
-    window.sessionStorage.removeItem(KEY);
+    window.sessionStorage.removeItem(IMAGES_KEY);
+  } catch {
+    /* ignore */
+  }
+}
+
+export function loadConfigPersist() {
+  try {
+    const raw = window.sessionStorage.getItem(CONFIG_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object') return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+export function saveConfigPersist(patch = {}) {
+  try {
+    window.sessionStorage.setItem(CONFIG_KEY, JSON.stringify(patch));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+export function clearConfigPersist() {
+  try {
+    window.sessionStorage.removeItem(CONFIG_KEY);
   } catch {
     /* ignore */
   }
