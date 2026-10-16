@@ -165,3 +165,4 @@ export const defaultConfig = {
   },
   watermark: true,
 };
+
