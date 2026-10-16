@@ -7,7 +7,7 @@ import CoffeeOverlay from './components/CoffeeOverlay';
 import InstallPrompt from './components/InstallPrompt';
 import { downloadUrl, deepEqual } from './lib/format';
 import { SHARE_TEXT } from './lib/share';
-import { loadImages, saveImages, loadConfigPersist, saveConfigPersist } from './lib/persist';
+import { loadImages, saveImages, loadConfigPersist } from './lib/persist';
 
 const EXPORT_CANVAS_BG = '#000000';
 
@@ -335,6 +335,7 @@ export default function App() {
     </div>
   );
 }
+
 
 
 

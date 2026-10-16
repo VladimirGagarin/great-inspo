@@ -1,4 +1,4 @@
-import { useContext, useMemo, useRef } from 'react';
+import React, { useContext, useMemo, useRef } from 'react';
 import { initials, hashHue } from '../lib/format';
 import { tokenize } from '../lib/tokenize';
 import { PlatformLogo } from './logos';
@@ -229,3 +229,4 @@ export function Body({ text, className = '', style = null }) {
     </span>
   );
 }
+
