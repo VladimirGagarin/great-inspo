@@ -33,7 +33,10 @@ export default function TumblrCard({ cfg, api }) {
                 {initials(c.name)}
               </span>
               <div className="sc-tmb-reblogtext">
-                <span className="sc-tmb-reblogname">{c.name}</span>
+                <span className="sc-tmb-reblogname">
+                  {c.name}
+                  {c.verified && <i className="sc-tmb-tick">✓</i>}
+                </span>
                 <span className="sc-tmb-reblogmsg">{c.text}</span>
               </div>
               <Reply size={14} color="var(--muted)" />

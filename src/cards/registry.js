@@ -21,6 +21,21 @@ import QuoraCard from './QuoraCard';
 import MediumCard from './MediumCard';
 import SpotifyCard from './SpotifyCard';
 import PodcastCard from './PodcastCard';
+import GlassCard from './GlassCard';
+import NeuCard from './NeuCard';
+import ElegantCard from './ElegantCard';
+import PolaroidCard from './PolaroidCard';
+import MagazineCard from './MagazineCard';
+import MeshCard from './MeshCard';
+import NoirCard from './NoirCard';
+import VaporwaveCard from './VaporwaveCard';
+import MinimalCard from './MinimalCard';
+import NewsCard from './NewsCard';
+import StormCard from './StormCard';
+import ChatCard from './ChatCard';
+import RippedCard from './RippedCard';
+import VisualizerCard from './VisualizerCard';
+import VinylCard from './VinylCard';
 
 export const CARDS = {
   x: XCard,
@@ -46,4 +61,19 @@ export const CARDS = {
   medium: MediumCard,
   spotify: SpotifyCard,
   podcast: PodcastCard,
+  glass: GlassCard,
+  neu: NeuCard,
+  elegant: ElegantCard,
+  polaroid: PolaroidCard,
+  magazine: MagazineCard,
+  mesh: MeshCard,
+  noir: NoirCard,
+  vaporwave: VaporwaveCard,
+  minimal: MinimalCard,
+  news: NewsCard,
+  storm: StormCard,
+  chat: ChatCard,
+  ripped: RippedCard,
+  visualizer: VisualizerCard,
+  vinyl: VinylCard,
 };

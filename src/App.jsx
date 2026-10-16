@@ -92,11 +92,40 @@ export default function App() {
     if (!node) throw new Error('Card not found');
     setBusy(true);
     try {
-      return await toPng(node, { pixelRatio: scale, cacheBust: true });
+      const dataUrl = await toPng(node, { pixelRatio: scale, cacheBust: true });
+      const img = new Image();
+      await new Promise((resolve, reject) => {
+        img.onload = resolve;
+        img.onerror = reject;
+        img.src = dataUrl;
+      });
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const r = Math.min(Math.max(0, Number(cfg.style.radius) || 0) * scale, Math.min(canvas.width, canvas.height) / 2);
+      if (r > 0) {
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.beginPath();
+        if (typeof ctx.roundRect === 'function') {
+          ctx.roundRect(0, 0, canvas.width, canvas.height, r);
+        } else {
+          ctx.moveTo(r, 0);
+          ctx.arcTo(canvas.width, 0, canvas.width, canvas.height, r);
+          ctx.arcTo(canvas.width, canvas.height, 0, canvas.height, r);
+          ctx.arcTo(0, canvas.height, 0, 0, r);
+          ctx.arcTo(0, 0, canvas.width, 0, r);
+          ctx.closePath();
+        }
+        ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
+      }
+      return canvas.toDataURL('image/png');
     } finally {
       setBusy(false);
     }
-  }, [scale]);
+  }, [scale, cfg.style.radius]);
 
   const onDownload = useCallback(async () => {
     try {

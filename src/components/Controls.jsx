@@ -28,7 +28,7 @@ export default function Controls({ cfg, api, exportProps }) {
         <TextPanel cfg={cfg} api={api} />
       </Section>
 
-      <Section title="Social Templates" open={open.template} onToggle={() => toggle('template')} badge={tplName}>
+      <Section title="Templates" open={open.template} onToggle={() => toggle('template')} badge={tplName}>
         <TemplatePanel cfg={cfg} api={api} />
       </Section>
 

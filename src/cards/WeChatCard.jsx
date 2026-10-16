@@ -40,7 +40,7 @@ export default function WeChatCard({ cfg, api }) {
             {cfg.show.comments && (
               <div className="sc-wc-comments">
                 {comments.map((c, i) => (
-                  <p key={i}><b>{c.name}:</b> {c.text}</p>
+                  <p key={i}><b>{c.name}{c.verified && <i className="sc-wc-tick">✓</i>}:</b> {c.text}</p>
                 ))}
                 <p className="sc-wc-viewall">
                   <CommentIcon size={13} />

@@ -33,7 +33,7 @@ export default function TextPanel({ cfg, api }) {
     insertSample(next);
   };
 
-  const isPlayer = cfg.template === 'spotify' || cfg.template === 'podcast';
+  const isPlayer = cfg.template === 'spotify' || cfg.template === 'podcast' || cfg.template === 'vinyl';
   const durSec = parseTimeStr(cfg.player?.duration) ?? 238;
   const prog = cfg.player?.progress ?? 42;
   const elapsed = formatTimeStr((durSec * prog) / 100);

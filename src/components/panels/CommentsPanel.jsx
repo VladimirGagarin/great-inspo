@@ -4,6 +4,8 @@ const NOTES = {
   wechat: 'Shown in the Moments comment box and the “liked by” row.',
   tumblr: 'Each entry becomes a reblog in the chain (name + message).',
   slack: 'The first entry is used as the thread replier in the replies row.',
+  storm: 'Each entry becomes a stacked reply under the main post.',
+  chat: 'Entries render as conversation bubbles — even rows are outgoing.',
 };
 
 export default function CommentsPanel({ cfg, api }) {
@@ -24,7 +26,16 @@ export default function CommentsPanel({ cfg, api }) {
       ...c,
       comments: {
         ...c.comments,
-        items: [...c.comments.items, { name: 'New user', text: 'New comment' }],
+        items: [...c.comments.items, { name: 'New user', text: 'New comment', verified: false }],
+      },
+    }));
+
+  const toggleVerified = (i) =>
+    api.update((c) => ({
+      ...c,
+      comments: {
+        ...c.comments,
+        items: c.comments.items.map((it, idx) => (idx === i ? { ...it, verified: !it.verified } : it)),
       },
     }));
 
@@ -55,6 +66,14 @@ export default function CommentsPanel({ cfg, api }) {
               onFocus={api.checkpoint}
               onChange={(v) => setItem(i, 'name', v)}
             />
+            <button
+              type="button"
+              className={`cmt-verify ${item.verified ? 'is-on' : ''}`}
+              title={item.verified ? 'Remove verified badge' : 'Give verified badge'}
+              onClick={() => toggleVerified(i)}
+            >
+              ✓
+            </button>
             <button
               type="button"
               className="cmt-del"

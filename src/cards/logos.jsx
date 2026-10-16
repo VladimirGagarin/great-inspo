@@ -134,6 +134,96 @@ export function PlatformLogo({ id, size = 18, color = 'currentColor' }) {
           <path d="M12 15.4v2.6" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
         </S>
       );
+    case 'glass':
+      return (
+        <S size={size} color={color}>
+          <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke={color} strokeWidth="2" />
+          <path d="M8 16 16 8" stroke={color} strokeWidth="2" strokeLinecap="round" />
+        </S>
+      );
+    case 'neu':
+      return (
+        <S size={size} color={color}>
+          <circle cx="12" cy="12" r="8.5" stroke={color} strokeWidth="2" />
+          <circle cx="12" cy="12" r="3.5" fill={color} />
+        </S>
+      );
+    case 'elegant':
+      return <Quote size={size} color={color} />;
+    case 'polaroid':
+      return (
+        <S size={size} color={color}>
+          <rect x="4" y="3" width="16" height="18" rx="1.5" stroke={color} strokeWidth="2" />
+          <path d="M4 16h16" stroke={color} strokeWidth="2" />
+        </S>
+      );
+    case 'magazine':
+      return <Letter size={size} color={color} char="N" />;
+    case 'mesh':
+      return (
+        <S size={size} color={color}>
+          <circle cx="8.5" cy="9" r="4" fill={color} opacity=".9" />
+          <circle cx="15" cy="12" r="4.5" fill={color} opacity=".6" />
+          <circle cx="10" cy="16" r="3.5" fill={color} opacity=".45" />
+        </S>
+      );
+    case 'noir':
+      return (
+        <S size={size} color={color}>
+          <circle cx="12" cy="12" r="9" stroke={color} strokeWidth="2" />
+          <path d="M12 3a9 9 0 0 1 0 18z" fill={color} />
+        </S>
+      );
+    case 'vaporwave':
+      return (
+        <S size={size} color={color}>
+          <path d="M12 4 21 19H3z" stroke={color} strokeWidth="2" strokeLinejoin="round" />
+        </S>
+      );
+    case 'minimal':
+      return (
+        <S size={size} color={color}>
+          <path d="M5 12h14" stroke={color} strokeWidth="2.4" strokeLinecap="round" />
+        </S>
+      );
+    case 'news':
+      return (
+        <S size={size} color={color}>
+          <rect x="3" y="5" width="18" height="14" rx="2" stroke={color} strokeWidth="2" />
+          <path d="M6.5 9.5h7M6.5 13h11M6.5 16h9" stroke={color} strokeWidth="1.7" strokeLinecap="round" />
+        </S>
+      );
+    case 'storm':
+      return (
+        <S size={size} color={color}>
+          <path d="M5 7h14M5 12h10M5 17h12" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+        </S>
+      );
+    case 'chat':
+      return (
+        <S size={size} color={color}>
+          <path d="M4 6a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v7a3 3 0 0 1-3 3H10l-4.5 3.5V16H7a3 3 0 0 1-3-3z" fill={color} />
+        </S>
+      );
+    case 'ripped':
+      return (
+        <S size={size} color={color}>
+          <path d="M4 8l3-2 3 2 3-2 3 2 3-2v11H4z" stroke={color} strokeWidth="2" strokeLinejoin="round" />
+        </S>
+      );
+    case 'visualizer':
+      return (
+        <S size={size} color={color}>
+          <path d="M5 14v4M9 9v10M13 5v14M17 10v8M21 13v5" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+        </S>
+      );
+    case 'vinyl':
+      return (
+        <S size={size} color={color}>
+          <circle cx="12" cy="12" r="9" stroke={color} strokeWidth="2" />
+          <circle cx="12" cy="12" r="3" fill={color} />
+        </S>
+      );
     case 'whatsapp':
       return (
         <S size={size} color={color}>

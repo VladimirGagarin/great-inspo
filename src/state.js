@@ -22,6 +22,21 @@ export const TEMPLATES = [
   { id: 'spotify', name: 'Spotify', hint: 'Now playing · track' },
   { id: 'podcast', name: 'Podcast', hint: 'Episode · player' },
   { id: 'quote', name: 'Quote', hint: 'Elegant quote' },
+  { id: 'glass', name: 'Glass', hint: 'Frosted glassmorphism', cat: 'aesthetic' },
+  { id: 'neu', name: 'Soft UI', hint: 'Neumorphic extrude', cat: 'aesthetic' },
+  { id: 'elegant', name: 'Elegant', hint: 'Serif quote card', cat: 'aesthetic' },
+  { id: 'polaroid', name: 'Polaroid', hint: 'Photo + caption strip', cat: 'aesthetic' },
+  { id: 'magazine', name: 'Magazine', hint: 'Editorial headline', cat: 'aesthetic' },
+  { id: 'mesh', name: 'Mesh', hint: 'Gradient blob background', cat: 'aesthetic' },
+  { id: 'noir', name: 'Noir', hint: 'Monochrome · high contrast', cat: 'aesthetic' },
+  { id: 'vaporwave', name: 'Vaporwave', hint: 'Retro pink / cyan', cat: 'aesthetic' },
+  { id: 'minimal', name: 'Minimal', hint: 'Clean thin-line card', cat: 'aesthetic' },
+  { id: 'news', name: 'Breaking News', hint: 'Headline ticker', cat: 'aesthetic' },
+  { id: 'storm', name: 'Thread', hint: 'Stacked posts', cat: 'aesthetic', comments: true },
+  { id: 'chat', name: 'Chat', hint: 'Conversation bubbles', cat: 'aesthetic', comments: true },
+  { id: 'ripped', name: 'Ripped Paper', hint: 'Torn-edge photo', cat: 'aesthetic' },
+  { id: 'visualizer', name: 'Visualizer', hint: 'Audio bars', cat: 'aesthetic' },
+  { id: 'vinyl', name: 'Vinyl', hint: 'Album + record', cat: 'aesthetic' },
 ];
 
 export const templateSupportsComments = (id) => Boolean(TEMPLATES.find((t) => t.id === id)?.comments);
@@ -50,6 +65,21 @@ export const templateWidth = (id) => {
     medium: 460,
     spotify: 420,
     podcast: 460,
+    glass: 460,
+    neu: 440,
+    elegant: 460,
+    polaroid: 400,
+    magazine: 480,
+    mesh: 460,
+    noir: 440,
+    vaporwave: 460,
+    minimal: 420,
+    news: 480,
+    storm: 480,
+    chat: 400,
+    ripped: 440,
+    visualizer: 460,
+    vinyl: 480,
   };
   return map[id] || 500;
 };
