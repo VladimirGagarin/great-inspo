@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Field, Slider, Switch, TextArea, TextInput } from '../ui';
 import { EMOJIS } from '../../state';
 import { SAMPLES } from '../../lib/samples';
+import { FONTS } from '../../lib/fonts';
 import { formatTimeStr, parseTimeStr } from '../../lib/format';
 
 export default function TextPanel({ cfg, api }) {
@@ -37,6 +38,9 @@ export default function TextPanel({ cfg, api }) {
   const durSec = parseTimeStr(cfg.player?.duration) ?? 238;
   const prog = cfg.player?.progress ?? 42;
   const elapsed = formatTimeStr((durSec * prog) / 100);
+
+  const activeFont = FONTS.find((f) => f.id === cfg.style.font) || FONTS[0];
+  const fontSample = (cfg.body || 'The quick brown fox').replace(/\s+/g, ' ').trim().slice(0, 12) || 'Aa';
 
   const onDurationChange = (v) => {
     setDurDraft(v);
@@ -85,6 +89,13 @@ export default function TextPanel({ cfg, api }) {
               onClick={() => toggle('samples')}
             >
               ✎ samples
+            </button>
+            <button
+              type="button"
+              className={`linkbtn ${picker === 'fonts' ? 'is-active' : ''}`}
+              onClick={() => toggle('fonts')}
+            >
+              Aa fonts
             </button>
           </span>
         </span>
@@ -138,6 +149,35 @@ export default function TextPanel({ cfg, api }) {
                   onClick={() => insertSample(t)}
                 >
                   {t}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {picker === 'fonts' && (
+          <div className="sample-pop">
+            <div className="sample-tools">
+              <span>{activeFont.label} · {FONTS.length} fonts — click to apply</span>
+              <button
+                type="button"
+                className="linkbtn"
+                onClick={() => api.update((c) => ({ ...c, style: { ...c.style, font: 'default' } }))}
+              >
+                ↺ reset
+              </button>
+            </div>
+
+            <div className="font-grid">
+              {FONTS.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  className={`font-chip ${cfg.style.font === f.id ? 'is-active' : ''}`}
+                  onClick={() => api.update((c) => ({ ...c, style: { ...c.style, font: f.id } }))}
+                >
+                  <b style={{ fontFamily: f.css }}>{fontSample}</b>
+                  <span>{f.label}</span>
                 </button>
               ))}
             </div>

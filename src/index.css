@@ -962,6 +962,119 @@ input[type='number'] {
   background: rgba(236, 72, 153, 0.09);
 }
 
+/* ---- font picker ---- */
+.font-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  max-height: 288px;
+  overflow-y: auto;
+  padding-right: 3px;
+  scrollbar-width: thin;
+}
+
+.font-chip {
+  text-align: left;
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 8px 10px;
+  color: var(--fg-2);
+  cursor: pointer;
+  transition: border-color 0.13s, color 0.13s, background 0.13s, transform 0.07s;
+}
+
+.font-chip b {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--fg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.font-chip span {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+
+.font-chip:hover {
+  border-color: var(--brand-1);
+  color: var(--fg);
+  background: #191922;
+  transform: translateY(-1px);
+}
+
+.font-chip.is-active {
+  border-color: var(--brand-2);
+  color: var(--fg);
+  background: rgba(236, 72, 153, 0.09);
+}
+
+/* ---- share row ---- */
+.share-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.share-btn {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid var(--line-2);
+  background: var(--bg-3);
+  color: var(--fg-2);
+  transition: background 0.14s, border-color 0.14s, color 0.14s, transform 0.07s;
+}
+
+.share-btn:hover {
+  background: #1e1e27;
+  border-color: #3a3a48;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.share-btn svg {
+  display: block;
+}
+
+.share-btn.share-facebook:hover {
+  color: #1877f2;
+}
+
+.share-btn.share-x:hover {
+  color: #fff;
+}
+
+.share-btn.share-whatsapp:hover {
+  color: #25d366;
+}
+
+.share-btn.share-telegram:hover {
+  color: #29a9eb;
+}
+
+.share-btn.share-linkedin:hover {
+  color: #0a66c2;
+}
+
+.share-btn.share-reddit:hover {
+  color: #ff4500;
+}
+
+.share-btn.share-email:hover {
+  color: #34d399;
+}
+
 /* ---- templates ---- */
 .tpl-grid {
   display: grid;
@@ -1441,6 +1554,77 @@ input[type='number'] {
     opacity: 1;
     transform: none;
   }
+}
+
+/* ============ install / bookmark ============ */
+.inst-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(8, 8, 11, 0.72);
+  backdrop-filter: blur(6px);
+  animation: coffeeFade 0.18s ease;
+}
+
+.inst-card {
+  position: relative;
+  width: 100%;
+  max-width: 384px;
+  background: linear-gradient(180deg, #16161d, #101014);
+  border: 1px solid var(--line-2);
+  border-radius: 16px;
+  padding: 22px 20px 18px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: coffeePop 0.2s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+.inst-card h2 {
+  margin: 0;
+  padding-right: 34px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.inst-card p {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--fg-2);
+}
+
+.inst-steps {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--fg-2);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.inst-steps b {
+  color: var(--fg);
+}
+
+.inst-kbd {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.inst-note {
+  font-size: 11px !important;
+  color: var(--fg-3) !important;
 }
 
 /* ============ responsive ============ */

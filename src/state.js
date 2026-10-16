@@ -153,6 +153,7 @@ export const defaultConfig = {
   },
   style: {
     fontSize: 15,
+    font: 'default',
     accent: '',
     padding: 16,
     radius: 16,

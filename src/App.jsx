@@ -4,7 +4,11 @@ import { defaultConfig } from './state';
 import Preview from './components/Preview';
 import Controls from './components/Controls';
 import CoffeeOverlay from './components/CoffeeOverlay';
+import InstallPrompt from './components/InstallPrompt';
 import { downloadUrl, deepEqual } from './lib/format';
+import { SHARE_TEXT } from './lib/share';
+
+const EXPORT_CANVAS_BG = '#000000';
 
 function GiLogo({ size = 28 }) {
   return (
@@ -115,10 +119,11 @@ export default function App() {
       canvas.width = img.width;
       canvas.height = img.height;
       const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
+      ctx.fillStyle = EXPORT_CANVAS_BG;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       const r = Math.min(Math.max(0, Number(cfg.style.radius) || 0) * scale, Math.min(canvas.width, canvas.height) / 2);
+      ctx.save();
       if (r > 0) {
-        ctx.globalCompositeOperation = 'destination-in';
         ctx.beginPath();
         if (typeof ctx.roundRect === 'function') {
           ctx.roundRect(0, 0, canvas.width, canvas.height, r);
@@ -130,9 +135,10 @@ export default function App() {
           ctx.arcTo(0, 0, canvas.width, 0, r);
           ctx.closePath();
         }
-        ctx.fill();
-        ctx.globalCompositeOperation = 'source-over';
+        ctx.clip();
       }
+      ctx.drawImage(img, 0, 0);
+      ctx.restore();
       return canvas.toDataURL('image/png');
     } finally {
       setBusy(false);
@@ -164,6 +170,26 @@ export default function App() {
     } catch (err) {
       console.error(err);
       flash('Copy failed — download instead');
+    }
+  }, [renderPng, flash]);
+
+  const onShare = useCallback(async () => {
+    try {
+      const url = await renderPng();
+      const blob = await (await fetch(url)).blob();
+      const file = new File([blob], 'social-card.png', { type: 'image/png' });
+      const payload = { title: 'GreatInspo card', text: SHARE_TEXT };
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ ...payload, files: [file] });
+      } else if (navigator.share) {
+        await navigator.share({ ...payload, url: window.location.href });
+      } else {
+        flash('Sharing not supported here — use Copy to clipboard');
+      }
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+      console.error(err);
+      flash('Share failed — download instead');
     }
   }, [renderPng, flash]);
 
@@ -214,6 +240,7 @@ export default function App() {
     isDefault,
     onDownload,
     onCopy,
+    onShare,
     onSave,
     onLoad,
     onReset,
@@ -251,6 +278,7 @@ export default function App() {
           >
             {busy ? 'Rendering…' : 'Download PNG'}
           </button>
+          <InstallPrompt />
         </div>
       </header>
 

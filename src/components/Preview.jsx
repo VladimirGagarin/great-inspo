@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CARDS } from '../cards/registry';
 import { templateWidth } from '../state';
 import { Watermark } from '../cards/shared';
+import { fontById } from '../lib/fonts';
 
 export default function Preview({ cfg, api, cardRef }) {
   const wrapRef = useRef(null);
@@ -45,7 +46,13 @@ export default function Preview({ cfg, api, cardRef }) {
           <div
             className="card-measure"
             ref={cardRef}
-            style={{ width: '100%', position: 'relative', overflow: 'hidden', borderRadius: `${cfg.style.radius}px` }}
+            style={{
+              width: '100%',
+              position: 'relative',
+              overflow: 'hidden',
+              borderRadius: `${cfg.style.radius}px`,
+              '--card-font': fontById(cfg.style.font).css,
+            }}
           >
             <Card cfg={cfg} api={api} />
             <Watermark cfg={cfg} />
