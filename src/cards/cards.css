@@ -33,6 +33,9 @@
 .sc-avatar {
   -webkit-user-drag: none;
 }
+.sc-avatar-frame.is-draggable:active {
+  cursor: grabbing;
+}
 .sc-photo {
   user-select: none;
 }

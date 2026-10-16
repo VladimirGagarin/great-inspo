@@ -1,23 +1,78 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { initials, hashHue } from '../lib/format';
 import { PlatformLogo } from './logos';
 import { ALIGN_POS } from '../state';
+import { AvatarCtx } from './ctx';
 
 export function Avatar({ cfg, size = 40, ring = null }) {
   const hue = hashHue(cfg.author);
+  const api = useContext(AvatarCtx);
+  const drag = useRef(null);
+  const av = cfg.avatar || {};
   const style = {
     width: size,
     height: size,
     borderRadius: '50%',
     flexShrink: 0,
-    objectFit: 'cover',
     display: 'block',
   };
   if (ring) {
     style.boxShadow = `0 0 0 ${Math.max(1.5, size / 26)}px ${ring}`;
   }
-  if (cfg.avatar?.src) {
-    return <img src={cfg.avatar.src} alt="" style={style} className="sc-avatar" />;
+  if (av.src) {
+    const onPointerDown = (e) => {
+      if (!api) return;
+      const card = e.currentTarget.closest('.card-root');
+      const scale = card ? card.getBoundingClientRect().width / card.offsetWidth : 1;
+      drag.current = { sx: e.clientX, sy: e.clientY, ox: av.x || 0, oy: av.y || 0, scale };
+      e.currentTarget.setPointerCapture(e.pointerId);
+      api.checkpoint();
+    };
+    const onPointerMove = (e) => {
+      const d = drag.current;
+      if (!d || !api) return;
+      const dx = (e.clientX - d.sx) / d.scale;
+      const dy = (e.clientY - d.sy) / d.scale;
+      api.updateLive((c) => ({ ...c, avatar: { ...c.avatar, x: d.ox + dx, y: d.oy + dy } }));
+    };
+    const onPointerUp = () => {
+      drag.current = null;
+    };
+    return (
+      <span
+        className={`sc-avatar-frame ${api ? 'is-draggable' : ''}`}
+        style={{
+          ...style,
+          display: 'block',
+          position: 'relative',
+          overflow: 'hidden',
+          cursor: api ? 'grab' : 'default',
+          touchAction: 'none',
+        }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+      >
+        <img
+          src={av.src}
+          alt=""
+          draggable={false}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: ALIGN_POS[av.align] || 'center center',
+            display: 'block',
+            userSelect: 'none',
+            pointerEvents: 'none',
+            transform: `translate(${av.x || 0}px, ${av.y || 0}px) scale(${av.zoom || 1})`,
+            transformOrigin: 'center',
+          }}
+          className="sc-avatar"
+        />
+      </span>
+    );
   }
   return (
     <div

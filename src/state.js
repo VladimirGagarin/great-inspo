@@ -140,7 +140,7 @@ export const defaultConfig = {
   timestamp: defaultTimestamp,
   body: 'Just shipped a side project that turns any idea into a shareable social card in seconds. Would love your feedback!',
   photo: { src: null, zoom: 1, x: 0, y: 0, fit: 'cover', align: 'center', shape: 'auto', duration: '10:24' },
-  avatar: { src: null },
+  avatar: { src: null, x: 0, y: 0, zoom: 1, align: 'center' },
   player: { time: '1:42', duration: '3:58', progress: 43 },
   stats: { likes: 12400, comments: 843, shares: 2100, views: 184000, notes: 9600 },
   show: { likes: true, comments: true, shares: true, views: true, notes: true },

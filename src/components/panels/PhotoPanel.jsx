@@ -20,7 +20,7 @@ export default function PhotoPanel({ cfg, api }) {
     if (!file) return;
     if (!file.type.startsWith('image/')) return;
     const url = await readFileAsDataURL(file);
-    api.update((c) => ({ ...c, avatar: { src: url } }));
+    api.update((c) => ({ ...c, avatar: { src: url, x: 0, y: 0, zoom: 1, align: 'center' } }));
   };
 
   const setPhotoProp = (key, value) => api.updateLive((c) => ({ ...c, photo: { ...c.photo, [key]: value } }));
@@ -155,8 +155,67 @@ export default function PhotoPanel({ cfg, api }) {
 
       <div className="row">
         <Btn onClick={() => avatarInput.current?.click()}>Choose avatar</Btn>
-        {cfg.avatar.src && <Btn onClick={() => api.update((c) => ({ ...c, avatar: { src: null } }))}>Clear</Btn>}
+        {cfg.avatar.src && (
+          <Btn onClick={() => api.update((c) => ({ ...c, avatar: { src: null, x: 0, y: 0, zoom: 1, align: 'center' } }))}>
+            Clear
+          </Btn>
+        )}
       </div>
+
+      {cfg.avatar.src && (
+        <>
+          <Slider
+            label="Avatar zoom"
+            min={1}
+            max={3}
+            step={0.01}
+            value={cfg.avatar.zoom ?? 1}
+            format={(v) => `${Math.round(v * 100)}%`}
+            onCheckpoint={api.checkpoint}
+            onChange={(v) => api.updateLive((c) => ({ ...c, avatar: { ...c.avatar, zoom: v } }))}
+          />
+
+          <div className="fld">
+            <span className="fld-label">
+              Avatar focus
+              <b className="fld-value">{cfg.avatar.align ?? 'center'}</b>
+            </span>
+            <div className="align-row">
+              <span className="align-grid">
+                {ALIGN_GRID.map((a) => (
+                  <button
+                    key={a}
+                    type="button"
+                    title={a}
+                    aria-label={a}
+                    aria-pressed={(cfg.avatar.align ?? 'center') === a}
+                    className={`alignbtn ${(cfg.avatar.align ?? 'center') === a ? 'is-active' : ''}`}
+                    onClick={() => {
+                      api.checkpoint();
+                      api.updateLive((c) => ({ ...c, avatar: { ...c.avatar, align: a } }));
+                    }}
+                  >
+                    <i />
+                  </button>
+                ))}
+              </span>
+              <span className="muted small">Which part of the photo stays in the circle</span>
+            </div>
+          </div>
+
+          <div className="row">
+            <Btn
+              onClick={() => {
+                api.checkpoint();
+                api.updateLive((c) => ({ ...c, avatar: { ...c.avatar, x: 0, y: 0, zoom: 1, align: 'center' } }));
+              }}
+            >
+              Reset avatar
+            </Btn>
+            <span className="muted">Drag the avatar on the card to reposition</span>
+          </div>
+        </>
+      )}
     </div>
   );
 }

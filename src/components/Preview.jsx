@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { CARDS } from '../cards/registry';
 import { templateWidth } from '../state';
 import { Watermark } from '../cards/shared';
+import { AvatarCtx } from '../cards/ctx';
 import { fontById } from '../lib/fonts';
 
 export default function Preview({ cfg, api, cardRef }) {
@@ -54,7 +55,9 @@ export default function Preview({ cfg, api, cardRef }) {
               '--card-font': fontById(cfg.style.font).css,
             }}
           >
-            <Card cfg={cfg} api={api} />
+            <AvatarCtx.Provider value={api}>
+              <Card cfg={cfg} api={api} />
+            </AvatarCtx.Provider>
             <Watermark cfg={cfg} />
           </div>
         </div>

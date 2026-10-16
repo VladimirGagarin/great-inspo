@@ -7,8 +7,19 @@ import CoffeeOverlay from './components/CoffeeOverlay';
 import InstallPrompt from './components/InstallPrompt';
 import { downloadUrl, deepEqual } from './lib/format';
 import { SHARE_TEXT } from './lib/share';
+import { loadImages, saveImages } from './lib/persist';
 
 const EXPORT_CANVAS_BG = '#000000';
+
+function initialConfig() {
+  const saved = typeof window === 'undefined' ? null : loadImages();
+  if (!saved) return defaultConfig;
+  return {
+    ...defaultConfig,
+    photo: { ...defaultConfig.photo, ...(saved.photo ? { src: saved.photo } : {}) },
+    avatar: { ...defaultConfig.avatar, ...(saved.avatar ? { src: saved.avatar } : {}) },
+  };
+}
 
 function GiLogo({ size = 28 }) {
   return (
@@ -27,7 +38,7 @@ function GiLogo({ size = 28 }) {
 }
 
 export default function App() {
-  const [hist, setHist] = useState({ past: [], present: defaultConfig, future: [] });
+  const [hist, setHist] = useState(() => ({ past: [], present: initialConfig(), future: [] }));
   const [scale, setScale] = useState(2);
   const [busy, setBusy] = useState(false);
   const [toast, setToast] = useState(null);
@@ -88,6 +99,15 @@ export default function App() {
     const t = window.setTimeout(() => setToast(null), 2400);
     return () => window.clearTimeout(t);
   }, [toast]);
+
+  const photoSrc = cfg.photo.src;
+  const avatarSrc = cfg.avatar.src;
+  useEffect(() => {
+    const t = window.setTimeout(() => {
+      saveImages({ photoSrc, avatarSrc });
+    }, 400);
+    return () => window.clearTimeout(t);
+  }, [photoSrc, avatarSrc]);
 
   useEffect(() => {
     const onKey = (e) => {
@@ -167,11 +187,12 @@ export default function App() {
       const blob = await (await fetch(url)).blob();
       await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
       flash('Copied to clipboard');
+      maybeShowCoffee();
     } catch (err) {
       console.error(err);
       flash('Copy failed — download instead');
     }
-  }, [renderPng, flash]);
+  }, [renderPng, flash, maybeShowCoffee]);
 
   const onShare = useCallback(async () => {
     try {
@@ -185,13 +206,15 @@ export default function App() {
         await navigator.share({ ...payload, url: window.location.href });
       } else {
         flash('Sharing not supported here — use Copy to clipboard');
+        return;
       }
+      maybeShowCoffee();
     } catch (err) {
       if (err && err.name === 'AbortError') return;
       console.error(err);
       flash('Share failed — download instead');
     }
-  }, [renderPng, flash]);
+  }, [renderPng, flash, maybeShowCoffee]);
 
   const onSave = useCallback(() => {
     const blob = new Blob([JSON.stringify(hist.present, null, 2)], { type: 'application/json' });
