@@ -27,7 +27,7 @@ export function Field({ label, hint, children }) {
   );
 }
 
-export function TextInput({ value, onChange, onFocus, placeholder, mono }) {
+export function TextInput({ value, onChange, onFocus, onBlur, placeholder, mono }) {
   return (
     <input
       type="text"
@@ -35,6 +35,7 @@ export function TextInput({ value, onChange, onFocus, placeholder, mono }) {
       value={value}
       placeholder={placeholder}
       onFocus={onFocus}
+      onBlur={onBlur}
       onChange={(e) => onChange(e.target.value)}
     />
   );

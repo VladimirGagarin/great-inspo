@@ -29,7 +29,7 @@ export default function PodcastCard({ cfg, api }) {
           <div className="sc-pc-title" style={{ fontSize: `${cfg.style.fontSize + 3}px` }}>{cfg.body}</div>
           <div className="sc-pc-ep">{cfg.timestamp}</div>
           <div className="sc-pc-progress">
-            <span className="sc-pc-progress-fill" style={{ width: `${cfg.player?.progress ?? 35}%` }}>
+            <span className="sc-pc-progress-fill" style={{ width: `${cfg.player?.progress ?? 43}%` }}>
               <i className="sc-pc-knob" />
             </span>
           </div>

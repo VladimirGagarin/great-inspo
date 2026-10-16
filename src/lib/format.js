@@ -19,6 +19,17 @@ export function clamp(v, min, max) {
   return Math.min(max, Math.max(min, v));
 }
 
+export function parseTimeStr(str) {
+  const m = /^(\d{1,3}):([0-5]?\d)$/.exec(String(str ?? '').trim());
+  if (!m) return null;
+  return Number(m[1]) * 60 + Number(m[2]);
+}
+
+export function formatTimeStr(totalSec) {
+  const s = clamp(Math.round(totalSec), 0, 99 * 60 + 59);
+  return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+}
+
 export function initials(name) {
   const parts = String(name || '?').replace(/^@/, '').trim().split(/\s+/);
   const a = parts[0]?.[0] || '?';

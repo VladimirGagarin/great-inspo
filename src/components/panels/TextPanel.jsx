@@ -2,10 +2,13 @@ import { useRef, useState } from 'react';
 import { Field, Slider, Switch, TextArea, TextInput } from '../ui';
 import { EMOJIS } from '../../state';
 import { SAMPLES } from '../../lib/samples';
+import { formatTimeStr, parseTimeStr } from '../../lib/format';
 
 export default function TextPanel({ cfg, api }) {
   const [picker, setPicker] = useState(null);
   const [cat, setCat] = useState(SAMPLES[0].id);
+  const [timeDraft, setTimeDraft] = useState(null);
+  const [durDraft, setDurDraft] = useState(null);
   const areaRef = useRef(null);
   const category = SAMPLES.find((s) => s.id === cat) || SAMPLES[0];
 
@@ -28,6 +31,39 @@ export default function TextPanel({ cfg, api }) {
       next = items[(items.indexOf(next) + 1) % items.length];
     }
     insertSample(next);
+  };
+
+  const isPlayer = cfg.template === 'spotify' || cfg.template === 'podcast';
+  const durSec = parseTimeStr(cfg.player?.duration) ?? 238;
+  const prog = cfg.player?.progress ?? 42;
+  const elapsed = formatTimeStr((durSec * prog) / 100);
+
+  const onDurationChange = (v) => {
+    setDurDraft(v);
+    const sec = parseTimeStr(v);
+    if (sec != null) {
+      api.updateLive((c) => ({
+        ...c,
+        player: { ...c.player, duration: formatTimeStr(sec), time: formatTimeStr((sec * (c.player?.progress ?? prog)) / 100) },
+      }));
+    }
+  };
+
+  const onDurationBlur = () => {
+    setDurDraft(null);
+  };
+
+  const onTimeChange = (v) => {
+    setTimeDraft(v);
+    const sec = parseTimeStr(v);
+    if (sec != null && sec <= durSec) {
+      const p = Math.round((sec / durSec) * 100);
+      api.updateLive((c) => ({ ...c, player: { ...c.player, progress: p, time: formatTimeStr(sec) } }));
+    }
+  };
+
+  const onProgressChange = (v) => {
+    api.updateLive((c) => ({ ...c, player: { ...c.player, progress: v, time: formatTimeStr((durSec * v) / 100) } }));
   };
 
   return (
@@ -138,25 +174,27 @@ export default function TextPanel({ cfg, api }) {
         />
       </Field>
 
-      {(cfg.template === 'spotify' || cfg.template === 'podcast') && (
+      {isPlayer && (
         <>
           <div className="grid2">
-            <Field label="Play time" hint="current position">
+            <Field label="Play time" hint="synced with progress">
               <TextInput
-                value={cfg.player.time}
+                value={timeDraft ?? cfg.player?.time ?? elapsed}
                 mono
                 placeholder="1:42"
                 onFocus={api.checkpoint}
-                onChange={(v) => api.updateLive((c) => ({ ...c, player: { ...c.player, time: v } }))}
+                onChange={onTimeChange}
+                onBlur={() => setTimeDraft(null)}
               />
             </Field>
-            <Field label="Duration" hint="total length">
+            <Field label="Duration" hint="m:ss · seconds 0–59">
               <TextInput
-                value={cfg.player.duration}
+                value={durDraft ?? cfg.player?.duration ?? '3:58'}
                 mono
                 placeholder="3:58"
                 onFocus={api.checkpoint}
-                onChange={(v) => api.updateLive((c) => ({ ...c, player: { ...c.player, duration: v } }))}
+                onChange={onDurationChange}
+                onBlur={onDurationBlur}
               />
             </Field>
           </div>
@@ -164,10 +202,10 @@ export default function TextPanel({ cfg, api }) {
             label="Progress"
             min={0}
             max={100}
-            value={cfg.player.progress}
-            format={(v) => `${v}%`}
+            value={prog}
+            format={(v) => `${v}% · ${formatTimeStr((durSec * v) / 100)}`}
             onCheckpoint={api.checkpoint}
-            onChange={(v) => api.updateLive((c) => ({ ...c, player: { ...c.player, progress: v } }))}
+            onChange={onProgressChange}
           />
         </>
       )}
