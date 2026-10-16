@@ -1,5 +1,5 @@
 import { Body } from './shared';
-import { accentOf, cardBackground, cardVars } from './helpers';
+import { cardBackground, cardVars } from './helpers';
 
 export default function BountyPostyCard({ cfg }) {
   const accent = cfg.style?.accent || '#b89a75';

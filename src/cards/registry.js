@@ -37,6 +37,7 @@ import RippedCard from './RippedCard';
 import VisualizerCard from './VisualizerCard';
 import VinylCard from './VinylCard';
 import TwitchCard from './TwitchCard';
+import BountyPostyCard from './BountyPostyCard';
 import GitHubCard from './GitHubCard';
 import WikipediaCard from './WikipediaCard';
 import ResumeCard from './ResumeCard';
