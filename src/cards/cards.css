@@ -3230,6 +3230,13 @@
   overflow: hidden;
   white-space: pre-wrap;
 }
+.sc-nw-photo {
+  margin-top: 13px;
+  border-bottom: 3px solid var(--accent);
+}
+.sc-nw-photo .sc-photo {
+  width: 100%;
+}
 .sc-nw-source {
   display: flex;
   align-items: baseline;
