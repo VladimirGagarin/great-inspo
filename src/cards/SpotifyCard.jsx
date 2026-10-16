@@ -39,13 +39,13 @@ export default function SpotifyCard({ cfg, api }) {
       </div>
 
       <div className="sc-sp-progress">
-        <span className="sc-sp-progress-fill" style={{ width: '42%' }}>
+        <span className="sc-sp-progress-fill" style={{ width: `${cfg.player?.progress ?? 42}%` }}>
           <i className="sc-sp-knob" />
         </span>
       </div>
       <div className="sc-sp-times">
-        <span>1:42</span>
-        <span>{cfg.photo.duration || '3:58'}</span>
+        <span>{cfg.player?.time || '1:42'}</span>
+        <span>{cfg.player?.duration || cfg.photo.duration || '3:58'}</span>
       </div>
 
       <div className="sc-sp-controls">

@@ -29,13 +29,13 @@ export default function PodcastCard({ cfg, api }) {
           <div className="sc-pc-title" style={{ fontSize: `${cfg.style.fontSize + 3}px` }}>{cfg.body}</div>
           <div className="sc-pc-ep">{cfg.timestamp}</div>
           <div className="sc-pc-progress">
-            <span className="sc-pc-progress-fill" style={{ width: '35%' }}>
+            <span className="sc-pc-progress-fill" style={{ width: `${cfg.player?.progress ?? 35}%` }}>
               <i className="sc-pc-knob" />
             </span>
           </div>
           <div className="sc-pc-times">
-            <span>8:20</span>
-            <span>{cfg.photo.duration || '24:10'}</span>
+            <span>{cfg.player?.time || '8:20'}</span>
+            <span>{cfg.player?.duration || cfg.photo.duration || '24:10'}</span>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Field, Switch, TextArea, TextInput } from '../ui';
+import { Field, Slider, Switch, TextArea, TextInput } from '../ui';
 import { EMOJIS } from '../../state';
 import { SAMPLES } from '../../lib/samples';
 
@@ -137,6 +137,40 @@ export default function TextPanel({ cfg, api }) {
           onChange={(v) => api.updateLive((c) => ({ ...c, timestamp: v }))}
         />
       </Field>
+
+      {(cfg.template === 'spotify' || cfg.template === 'podcast') && (
+        <>
+          <div className="grid2">
+            <Field label="Play time" hint="current position">
+              <TextInput
+                value={cfg.player.time}
+                mono
+                placeholder="1:42"
+                onFocus={api.checkpoint}
+                onChange={(v) => api.updateLive((c) => ({ ...c, player: { ...c.player, time: v } }))}
+              />
+            </Field>
+            <Field label="Duration" hint="total length">
+              <TextInput
+                value={cfg.player.duration}
+                mono
+                placeholder="3:58"
+                onFocus={api.checkpoint}
+                onChange={(v) => api.updateLive((c) => ({ ...c, player: { ...c.player, duration: v } }))}
+              />
+            </Field>
+          </div>
+          <Slider
+            label="Progress"
+            min={0}
+            max={100}
+            value={cfg.player.progress}
+            format={(v) => `${v}%`}
+            onCheckpoint={api.checkpoint}
+            onChange={(v) => api.updateLive((c) => ({ ...c, player: { ...c.player, progress: v } }))}
+          />
+        </>
+      )}
 
       <Switch
         label="Verified badge"

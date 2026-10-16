@@ -142,6 +142,7 @@ export default function App() {
         ...parsed,
         photo: { ...defaultConfig.photo, ...(parsed.photo || {}) },
         avatar: { ...defaultConfig.avatar, ...(parsed.avatar || {}) },
+        player: { ...defaultConfig.player, ...(parsed.player || {}) },
         stats: { ...defaultConfig.stats, ...(parsed.stats || {}) },
         show: { ...defaultConfig.show, ...(parsed.show || {}) },
         comments: {
@@ -160,7 +161,7 @@ export default function App() {
   }, [flash]);
 
   const onReset = useCallback(() => {
-    update({ ...defaultConfig, photo: { ...defaultConfig.photo }, avatar: { ...defaultConfig.avatar } });
+    update({ ...defaultConfig, photo: { ...defaultConfig.photo }, avatar: { ...defaultConfig.avatar }, player: { ...defaultConfig.player } });
     flash('Reset to defaults');
   }, [update, flash]);
 
