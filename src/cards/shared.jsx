@@ -194,15 +194,17 @@ export function Metric({ show, icon, value, title, gap = 22 }) {
   );
 }
 
-export function Watermark({ cfg }) {
-  if (!cfg.watermark) return null;
-  return (
-    <div className="sc-watermark" aria-hidden="true">
-      <PlatformLogo id={cfg.template} size={16} />
-      <span className="sc-watermark-text">GreatInpoArts</span>
-    </div>
-  );
-}
+  export function Watermark({ cfg }) {
+    if (!cfg.watermark) return null;
+    const isResume = cfg.template === 'resume' || cfg.template === 'github' || cfg.template === 'wikipedia' || cfg.template === 'hackernews';
+    const text = isResume ? 'GreatInpoArts' : (cfg.template === 'twitch' ? 'Twitch' : (cfg.template === 'github' ? 'GitHub' : (cfg.template === 'wikipedia' ? 'Wikipedia' : (cfg.template === 'hackernews' ? 'Hacker News' : (cfg.template === 'resume' ? 'GreatInpoArts' : 'GreatInpoArts')))));
+    return (
+      <div className="sc-watermark" aria-hidden="true">
+        <PlatformLogo id={cfg.template} size={16} />
+        <span className="sc-watermark-text">{cfg.template === 'resume' ? 'GreatInpoArts' : cfg.template === 'twitch' ? 'Twitch' : cfg.template === 'github' ? 'GitHub' : cfg.template === 'wikipedia' ? 'Wikipedia' : cfg.template === 'hackernews' ? 'Hacker News' : 'GreatInpoArts'}</span>
+      </div>
+    );
+  }
 
 export function Body({ text, className = '', style = null }) {
   const parts = useMemo(() => tokenize(text), [text]);

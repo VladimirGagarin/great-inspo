@@ -241,6 +241,40 @@ export function PlatformLogo({ id, size = 18, color = 'currentColor' }) {
           <path fill={color} opacity=".8" d="M21.1 13.9c0-2.6-2.5-4.7-5.6-4.7s-5.7 2.1-5.7 4.7 2.6 4.7 5.7 4.7c.7 0 1.3-.1 1.9-.3l2 1-.5-1.8c1.4-.9 2.2-2.2 2.2-3.6z" />
         </S>
       );
+    case 'twitch':
+      return (
+        <S size={size} color={color}>
+          <path fill={color} d=\"M4 3L3 7v12h4v2h3l2-2h3l6-6V3H4zm14 10l-3 3h-3l-2 2v-2H7V5h11v8z\" />
+          <path fill={color} d=\"M14 8h2v5h-2zm-3 0h2v5h-2z\" />
+        </S>
+      );
+    case 'github':
+      return (
+        <S size={size} color={color}>
+          <path fill={color} d=\"M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.69c-2.78.61-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z\" />
+        </S>
+      );
+    case 'wikipedia':
+      return (
+        <S size={size} color={color}>
+          <path fill={color} d=\"M6.5 6l2.5 6.5L11.5 6h1l-3 7h-1l-3-7h1zm10 0l-2.5 6.5L12.5 6h-1l3 7h1l3-7h-1z\" />
+          <circle cx=\"12\" cy=\"5\" r=\"1.5\" fill={color} />
+        </S>
+      );
+    case 'resume':
+      return (
+        <S size={size} color={color}>
+          <rect x=\"4\" y=\"3\" width=\"16\" height=\"18\" rx=\"2\" stroke={color} strokeWidth=\"2\" fill=\"none\" />
+          <path fill={color} d=\"M8 8h8v2H8zm0 4h5v2H8z\" />
+          <circle cx=\"12\" cy=\"7.5\" r=\"2\" fill={color} />
+        </S>
+      );
+    case 'hackernews':
+      return (
+        <S size={size} color={color}>
+          <path fill={color} d=\"M4 4h16v16H4V4zm2 2v12h12V6H6zm3.5 2l2.5 4 2.5-4h-5zm2.5 5h2v3h-2v-3z\" />
+        </S>
+      );
     default:
       return (
         <S size={size} color={color}>
@@ -249,3 +283,4 @@ export function PlatformLogo({ id, size = 18, color = 'currentColor' }) {
       );
   }
 }
+
