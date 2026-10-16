@@ -1,0 +1,43 @@
+{
+  "name": "GreatInspo — Social Card Maker",
+  "short_name": "GreatInspo",
+  "description": "Create realistic social media post cards and export them as high-resolution PNG images.",
+  "start_url": "/great-inspo/",
+  "scope": "/great-inspo/",
+  "display": "standalone",
+  "background_color": "#0b0b0e",
+  "theme_color": "#0b0b0e",
+  "categories": ["design", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "/great-inspo/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/great-inspo/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/great-inspo/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/great-inspo/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/great-inspo/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
