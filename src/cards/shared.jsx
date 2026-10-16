@@ -196,12 +196,18 @@ export function Metric({ show, icon, value, title, gap = 22 }) {
 
   export function Watermark({ cfg }) {
     if (!cfg.watermark) return null;
-    const isResume = cfg.template === 'resume' || cfg.template === 'github' || cfg.template === 'wikipedia' || cfg.template === 'hackernews';
-    const text = isResume ? 'GreatInpoArts' : (cfg.template === 'twitch' ? 'Twitch' : (cfg.template === 'github' ? 'GitHub' : (cfg.template === 'wikipedia' ? 'Wikipedia' : (cfg.template === 'hackernews' ? 'Hacker News' : (cfg.template === 'resume' ? 'GreatInpoArts' : 'GreatInpoArts')))));
+    const map = {
+      twitch: 'Twitch',
+      github: 'GitHub',
+      wikipedia: 'Wikipedia',
+      hackernews: 'Hacker News',
+      resume: '',
+    };
+    const text = map[cfg.template] ?? '';
     return (
       <div className="sc-watermark" aria-hidden="true">
         <PlatformLogo id={cfg.template} size={16} />
-        <span className="sc-watermark-text">{cfg.template === 'resume' ? 'GreatInpoArts' : cfg.template === 'twitch' ? 'Twitch' : cfg.template === 'github' ? 'GitHub' : cfg.template === 'wikipedia' ? 'Wikipedia' : cfg.template === 'hackernews' ? 'Hacker News' : 'GreatInpoArts'}</span>
+        {text ? <span className="sc-watermark-text">{text}</span> : null}
       </div>
     );
   }
