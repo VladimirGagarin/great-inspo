@@ -40,6 +40,12 @@ const MARKS = {
   ripped: '✂',
   visualizer: '▁',
   vinyl: '◎',
+  'bounty-posty': '✦',
+  twitch: '◉',
+  github: '⌘',
+  wikipedia: 'W',
+  resume: '▤',
+  hackernews: 'Y',
 };
 
 const HUES = {
@@ -51,11 +57,34 @@ const HUES = {
   glass: 255, neu: 215, elegant: 38, polaroid: 32, magazine: 0,
   mesh: 290, noir: 0, vaporwave: 310, minimal: 220, news: 0,
   storm: 210, chat: 150, ripped: 35, visualizer: 195, vinyl: 348,
+  'bounty-posty': 36, twitch: 270, github: 215, wikipedia: 205, resume: 215, hackernews: 25,
 };
 
 export default function TemplatePanel({ cfg, api }) {
-  const [cat, setCat] = useState('social');
+  const [cat, setCat] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    const requestedCategory = params.get('category');
+    if (requestedCategory === 'social' || requestedCategory === 'aesthetic') return requestedCategory;
+    return TEMPLATES.find((item) => item.id === params.get('template'))?.cat === 'aesthetic' ? 'aesthetic' : 'social';
+  });
   const list = TEMPLATES.filter((t) => (t.cat === 'aesthetic' ? 'aesthetic' : 'social') === cat);
+
+  const setCategory = (category) => {
+    setCat(category);
+    const url = new URL(window.location.href);
+    url.searchParams.set('category', category);
+    window.history.replaceState({}, '', url);
+  };
+
+  const selectTemplate = (template) => {
+    api.update((c) => ({ ...c, template }));
+    const templateCategory = TEMPLATES.find((item) => item.id === template)?.cat === 'aesthetic' ? 'aesthetic' : 'social';
+    setCat(templateCategory);
+    const url = new URL(window.location.href);
+    url.searchParams.set('template', template);
+    url.searchParams.set('category', templateCategory);
+    window.history.replaceState({}, '', url);
+  };
 
   return (
     <div>
@@ -63,14 +92,14 @@ export default function TemplatePanel({ cfg, api }) {
         <button
           type="button"
           className={`tpl-cat ${cat === 'social' ? 'is-active' : ''}`}
-          onClick={() => setCat('social')}
+          onClick={() => setCategory('social')}
         >
           Social
         </button>
         <button
           type="button"
           className={`tpl-cat ${cat === 'aesthetic' ? 'is-active' : ''}`}
-          onClick={() => setCat('aesthetic')}
+          onClick={() => setCategory('aesthetic')}
         >
           Aesthetic
           <span className="tpl-premium">PREMIUM</span>
@@ -82,7 +111,7 @@ export default function TemplatePanel({ cfg, api }) {
             key={t.id}
             type="button"
             className={`tpl ${cfg.template === t.id ? 'is-active' : ''}`}
-            onClick={() => api.update((c) => ({ ...c, template: t.id }))}
+            onClick={() => selectTemplate(t.id)}
           >
             <span
               className="tpl-mark"

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { toPng } from 'html-to-image';
-import { defaultConfig } from './state';
+import { defaultConfig, TEMPLATES } from './state';
 import Preview from './components/Preview';
 import Controls from './components/Controls';
 import CoffeeOverlay from './components/CoffeeOverlay';
@@ -13,9 +13,15 @@ const EXPORT_CANVAS_BG = '#000000';
 
 function initialConfig() {
   const saved = typeof window === 'undefined' ? null : loadImages();
-  if (!saved) return defaultConfig;
+  const params = typeof window === 'undefined' ? null : new URLSearchParams(window.location.search);
+  const requestedTemplate = params?.get('template');
+  const template = TEMPLATES.some((item) => item.id === requestedTemplate)
+    ? requestedTemplate
+    : defaultConfig.template;
+  if (!saved) return { ...defaultConfig, template };
   return {
     ...defaultConfig,
+    template,
     photo: { ...defaultConfig.photo, ...(saved.photo ? { src: saved.photo } : {}) },
     avatar: { ...defaultConfig.avatar, ...(saved.avatar ? { src: saved.avatar } : {}) },
   };
