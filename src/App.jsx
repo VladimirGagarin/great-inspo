@@ -3,7 +3,8 @@ import { toPng } from 'html-to-image';
 import { defaultConfig } from './state';
 import Preview from './components/Preview';
 import Controls from './components/Controls';
-import { downloadUrl } from './lib/format';
+import CoffeeOverlay from './components/CoffeeOverlay';
+import { downloadUrl, deepEqual } from './lib/format';
 
 function GiLogo({ size = 28 }) {
   return (
@@ -26,8 +27,11 @@ export default function App() {
   const [scale, setScale] = useState(2);
   const [busy, setBusy] = useState(false);
   const [toast, setToast] = useState(null);
+  const [coffeeOpen, setCoffeeOpen] = useState(false);
+  const coffeeShown = useRef(false);
   const cardRef = useRef(null);
   const cfg = hist.present;
+  const isDefault = useMemo(() => deepEqual(cfg, defaultConfig), [cfg]);
 
   const checkpoint = useCallback(() => {
     setHist((h) => {
@@ -66,6 +70,14 @@ export default function App() {
   const flash = useCallback((text) => {
     setToast(text);
   }, []);
+
+  const maybeShowCoffee = useCallback(() => {
+    if (coffeeShown.current) return;
+    coffeeShown.current = true;
+    window.setTimeout(() => setCoffeeOpen(true), 700);
+  }, []);
+
+  const closeCoffee = useCallback(() => setCoffeeOpen(false), []);
 
   useEffect(() => {
     if (!toast) return undefined;
@@ -132,11 +144,12 @@ export default function App() {
       const url = await renderPng();
       downloadUrl(url, `social-card-${Date.now()}.png`);
       flash('PNG downloaded');
+      maybeShowCoffee();
     } catch (err) {
       console.error(err);
       flash('Export failed — try again');
     }
-  }, [renderPng, flash]);
+  }, [renderPng, flash, maybeShowCoffee]);
 
   const onCopy = useCallback(async () => {
     try {
@@ -198,6 +211,7 @@ export default function App() {
     scale,
     onScale: setScale,
     busy,
+    isDefault,
     onDownload,
     onCopy,
     onSave,
@@ -211,8 +225,8 @@ export default function App() {
         <div className="brand">
           <GiLogo size={30} />
           <div className="brand-text">
-            <strong>GreatInspo</strong>
-            <span>Social Card Maker</span>
+            <h1 className="brand-name">GreatInspo</h1>
+            <span>Social Media Card Maker</span>
           </div>
         </div>
         <div className="topbar-actions">
@@ -228,13 +242,26 @@ export default function App() {
               <path d="M20 9H9a5 5 0 0 0 0 10h4" />
             </svg>
           </button>
-          <button type="button" className="btn btn-primary topbar-cta" onClick={onDownload} disabled={busy}>
+          <button
+            type="button"
+            className="btn btn-primary topbar-cta"
+            onClick={onDownload}
+            disabled={busy || isDefault}
+            title={isDefault ? 'Edit a field to enable export' : 'Download PNG'}
+          >
             {busy ? 'Rendering…' : 'Download PNG'}
           </button>
         </div>
       </header>
 
-      <main className="layout">
+      <p className="sr-only">
+        GreatInspo is a free online social media card maker. Create realistic post mockups for
+        Instagram, X (Twitter), TikTok, YouTube, Facebook, LinkedIn, Discord and Telegram, then
+        export them as high-resolution PNG images. It includes aesthetic and premium templates,
+        custom comments, avatars and engagement metrics — no sign-up required.
+      </p>
+
+      <main className="layout" aria-label="Social card editor">
         <div className="pane pane-preview">
           <div className="pane-label">Live preview</div>
           <Preview cfg={cfg} api={api} cardRef={cardRef} />
@@ -252,6 +279,8 @@ export default function App() {
       )}
 
       {toast && <div className="toast">{toast}</div>}
+
+      <CoffeeOverlay open={coffeeOpen} onClose={closeCoffee} />
     </div>
   );
 }

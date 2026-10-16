@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { Btn, Segmented } from '../ui';
 import { DownloadIcon, Send } from '../../cards/icons';
 
-export default function ExportPanel({ scale, onScale, busy, onDownload, onCopy, onSave, onLoad, onReset }) {
+export default function ExportPanel({ scale, onScale, busy, isDefault, onDownload, onCopy, onSave, onLoad, onReset }) {
   const fileRef = useRef(null);
 
   return (
@@ -19,12 +19,12 @@ export default function ExportPanel({ scale, onScale, busy, onDownload, onCopy, 
         />
       </div>
 
-      <Btn variant="primary" full onClick={onDownload} disabled={busy}>
+      <Btn variant="primary" full onClick={onDownload} disabled={busy || isDefault} title={isDefault ? 'Edit a field to enable export' : undefined}>
         {busy ? <span className="spinner" /> : <DownloadIcon size={16} />}
         {busy ? 'Rendering…' : 'Download PNG'}
       </Btn>
 
-      <Btn full onClick={onCopy} disabled={busy}>
+      <Btn full onClick={onCopy} disabled={busy || isDefault} title={isDefault ? 'Edit a field to enable export' : undefined}>
         <Send size={15} /> Copy to clipboard
       </Btn>
 
