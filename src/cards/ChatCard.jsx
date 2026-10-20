@@ -5,7 +5,7 @@ export default function ChatCard({ cfg }) {
   const accent = accentOf(cfg, '#25d366');
   const bg = cardBackground(cfg, '#e5ddd5', '#1f2c34');
   const items = cfg.comments.items || [];
-  const bubbles = items.slice(0, 3).map((it, i) => ({ name: it.name, text: it.text, out: i % 2 === 1, verified: Boolean(it.verified) }));
+  const bubbles = (cfg.show.comments ? items.slice(0, 3) : []).map((it, i) => ({ name: it.name, text: it.text, out: i % 2 === 1, verified: Boolean(it.verified) }));
   bubbles.push({ name: cfg.author, text: cfg.body, out: true });
 
   return (

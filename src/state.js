@@ -1,10 +1,10 @@
 export const TEMPLATES = [
-  { id: 'x', name: 'X / Twitter', hint: 'Tweet with metrics' },
-  { id: 'facebook', name: 'Facebook', hint: 'Feed post' },
-  { id: 'instagram', name: 'Instagram', hint: 'Square post' },
+  { id: 'x', name: 'X / Twitter', hint: 'Tweet with metrics', comments: true, premiumComments: true },
+  { id: 'facebook', name: 'Facebook', hint: 'Feed post', comments: true, premiumComments: true },
+  { id: 'instagram', name: 'Instagram', hint: 'Square post', comments: true, premiumComments: true },
   { id: 'tiktok', name: 'TikTok', hint: 'Comment card' },
   { id: 'threads', name: 'Threads', hint: 'Thread post' },
-  { id: 'linkedin', name: 'LinkedIn', hint: 'Professional post' },
+  { id: 'linkedin', name: 'LinkedIn', hint: 'Professional post', comments: true, premiumComments: true },
   { id: 'whatsapp', name: 'WhatsApp', hint: 'Chat bubble' },
   { id: 'telegram', name: 'Telegram', hint: 'Channel post · views' },
   { id: 'youtube', name: 'YouTube', hint: 'Video post' },
@@ -38,14 +38,32 @@ export const TEMPLATES = [
   { id: 'visualizer', name: 'Visualizer', hint: 'Audio bars', cat: 'aesthetic' },
   { id: 'vinyl', name: 'Vinyl', hint: 'Album + record', cat: 'aesthetic' },
   { id: 'bounty-posty', name: 'Bounty Posty', hint: 'Old paper bounty poster', cat: 'aesthetic', premium: true },
+  { id: 'success', name: 'Success', hint: 'Congrats · achievement', cat: 'aesthetic', premium: true },
+  { id: 'christmas', name: 'Merry Christmas', hint: 'Holiday greeting', cat: 'aesthetic', premium: true },
+  { id: 'eid', name: 'Eid al-Fitr', hint: 'Festival greeting', cat: 'aesthetic', premium: true },
+  { id: 'diwali', name: 'Diwali', hint: 'Festival of lights', cat: 'aesthetic', premium: true },
+  { id: 'birthday', name: 'Happy Birthday', hint: 'Party celebration', cat: 'aesthetic', premium: true },
+  { id: 'sorry', name: 'Sorry', hint: 'Apology card', cat: 'aesthetic', premium: true },
+  { id: 'thankyou', name: 'Thank You', hint: 'Gratitude card', cat: 'aesthetic', premium: true },
+  { id: 'recovery', name: 'Quick Recovery', hint: 'Get well soon', cat: 'aesthetic', premium: true },
+  { id: 'newyear', name: 'Happy New Year', hint: 'Countdown celebration', cat: 'aesthetic', premium: true },
+  { id: 'valentine', name: "Valentine's Day", hint: 'Love card', cat: 'aesthetic', premium: true },
+  { id: 'wedding', name: 'Best Wishes', hint: 'Wedding · engagement', cat: 'aesthetic', premium: true },
+  { id: 'goodluck', name: 'Good Luck', hint: 'Encouragement card', cat: 'aesthetic', premium: true },
+  { id: 'mothersday', name: "Mother's Day", hint: 'Tribute card', cat: 'aesthetic', premium: true },
+  { id: 'fathersday', name: "Father's Day", hint: 'Tribute card', cat: 'aesthetic', premium: true },
+  { id: 'ramadan', name: 'Ramadan Kareem', hint: 'Blessed month', cat: 'aesthetic', premium: true },
   { id: 'twitch', name: 'Twitch', hint: 'Stream preview', cat: 'social' },
   { id: 'github', name: 'GitHub', hint: 'Repo/commit style', cat: 'social' },
   { id: 'wikipedia', name: 'Wikipedia', hint: 'Article snapshot', cat: 'social', premium: true },
   { id: 'resume', name: 'Resume Card', hint: 'Mini CV', cat: 'social', premium: true },
   { id: 'hackernews', name: 'Hacker News', hint: 'Front page post', cat: 'social', premium: true },
+  { id: 'didyouknow', name: 'Did You Know?', hint: 'Fact card · custom watermark', cat: 'social', premium: true },
 ];
 
 export const templateSupportsComments = (id) => Boolean(TEMPLATES.find((t) => t.id === id)?.comments);
+
+export const templateCommentsPremium = (id) => Boolean(TEMPLATES.find((t) => t.id === id)?.premiumComments);
 
 export const EXTRA_METRICS = {
   tumblr: [{ key: 'notes', label: 'Notes', sub: 'likes + reblogs + replies' }],
@@ -87,6 +105,21 @@ export const templateWidth = (id) => {
     visualizer: 460,
     vinyl: 480,
     'bounty-posty': 500,
+    success: 480,
+    christmas: 480,
+    eid: 480,
+    diwali: 480,
+    birthday: 480,
+    sorry: 480,
+    thankyou: 480,
+    recovery: 480,
+    newyear: 480,
+    valentine: 480,
+    wedding: 480,
+    goodluck: 480,
+    mothersday: 480,
+    fathersday: 480,
+    ramadan: 480,
   };
   return map[id] || 500;
 };
@@ -150,7 +183,7 @@ export const defaultConfig = {
   avatar: { src: null, x: 0, y: 0, zoom: 1, align: 'center' },
   player: { time: '1:42', duration: '3:58', progress: 43 },
   stats: { likes: 12400, comments: 843, shares: 2100, views: 184000, notes: 9600 },
-  show: { likes: true, comments: true, shares: true, views: true, notes: true },
+  show: { likes: true, comments: false, shares: true, views: true, notes: true },
   comments: {
     items: [
       { name: 'Riya Kapoor', text: 'This is unreal 🔥' },
@@ -169,5 +202,6 @@ export const defaultConfig = {
     bg2: '#e9e6ff',
   },
   watermark: true,
+  watermarkText: '',
 };
 

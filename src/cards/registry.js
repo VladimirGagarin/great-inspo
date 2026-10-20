@@ -42,6 +42,8 @@ import GitHubCard from './GitHubCard';
 import WikipediaCard from './WikipediaCard';
 import ResumeCard from './ResumeCard';
 import HackerNewsCard from './HackerNewsCard';
+import GreetingCard from './GreetingCard';
+import DidYouKnowCard from './DidYouKnowCard';
 
 export const CARDS = {
   x: XCard,
@@ -89,4 +91,20 @@ export const CARDS = {
   wikipedia: WikipediaCard,
   resume: ResumeCard,
   hackernews: HackerNewsCard,
+  didyouknow: DidYouKnowCard,
+  success: GreetingCard,
+  christmas: GreetingCard,
+  eid: GreetingCard,
+  diwali: GreetingCard,
+  birthday: GreetingCard,
+  sorry: GreetingCard,
+  thankyou: GreetingCard,
+  recovery: GreetingCard,
+  newyear: GreetingCard,
+  valentine: GreetingCard,
+  wedding: GreetingCard,
+  goodluck: GreetingCard,
+  mothersday: GreetingCard,
+  fathersday: GreetingCard,
+  ramadan: GreetingCard,
 };

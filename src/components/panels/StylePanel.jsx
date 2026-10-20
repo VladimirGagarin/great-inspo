@@ -1,5 +1,5 @@
 import { TEMPLATES } from '../../state';
-import { Btn, ColorInput, Segmented, Slider, Switch } from '../ui';
+import { Btn, ColorInput, Segmented, Slider, Switch, TextInput } from '../ui';
 
 export default function StylePanel({ cfg, api }) {
   const style = cfg.style;
@@ -22,6 +22,18 @@ export default function StylePanel({ cfg, api }) {
         checked={cfg.dark}
         onChange={(v) => api.update((c) => ({ ...c, dark: v }))}
       />
+      {cfg.template === 'didyouknow' && (
+        <label className="fld">
+          <span className="fld-label">Card watermark</span>
+          <TextInput
+            value={cfg.watermarkText || ''}
+            placeholder="e.g. @yourbrand"
+            onFocus={api.checkpoint}
+            onChange={(v) => api.updateLive((c) => ({ ...c, watermarkText: v }))}
+          />
+          <span className="fld-hint">Shown on this card and updates as you type.</span>
+        </label>
+      )}
 
       <Slider
         label="Post text size"

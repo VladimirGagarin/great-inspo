@@ -7,7 +7,7 @@ import CommentsPanel from './panels/CommentsPanel';
 import EngagementPanel from './panels/EngagementPanel';
 import StylePanel from './panels/StylePanel';
 import ExportPanel from './panels/ExportPanel';
-import { TEMPLATES, templateSupportsComments } from '../state';
+import { TEMPLATES, templateSupportsComments, templateCommentsPremium } from '../state';
 import { formatCount } from '../lib/format';
 
 export default function Controls({ cfg, api, exportProps }) {
@@ -33,7 +33,17 @@ export default function Controls({ cfg, api, exportProps }) {
       </Section>
 
       {hasComments && (
-        <Section title="Comments" open={open.comments} onToggle={() => toggle('comments')} badge={`${cfg.comments.items.length} comments`}>
+        <Section
+          title="Comments"
+          open={open.comments}
+          onToggle={() => toggle('comments')}
+          badge={
+            <>
+              {templateCommentsPremium(cfg.template) && <span className="pnl-premium">PREMIUM</span>}
+              {cfg.comments.items.length} comments
+            </>
+          }
+        >
           <CommentsPanel cfg={cfg} api={api} />
         </Section>
       )}

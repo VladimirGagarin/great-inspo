@@ -1,4 +1,5 @@
 import { Photo, Avatar, Body} from './shared';
+import CommentList from './Comments';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Globe, Dots, ThumbUp, CommentIcon, Repost } from './icons';
 import { formatCount } from '../lib/format';
@@ -55,6 +56,8 @@ export default function FacebookCard({ cfg, api }) {
         <button type="button"><CommentIcon size={17} /> Comment</button>
         <button type="button"><Repost size={17} /> Share</button>
       </div>
+
+      <CommentList cfg={cfg} variant="fb" />
     </div>
   );
 }

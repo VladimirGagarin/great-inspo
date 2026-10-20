@@ -1,4 +1,5 @@
 import { Photo, Avatar, Metric, Body} from './shared';
+import CommentList from './Comments';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Reply, Repost, Heart, Views, Bookmark, ShareArrow, Dots } from './icons';
 import { formatCount, formatFull } from '../lib/format';
@@ -69,6 +70,8 @@ export default function XCard({ cfg, api }) {
           <ShareArrow size={17} />
         </div>
       </div>
+
+      <CommentList cfg={cfg} variant="x" />
     </div>
   );
 }

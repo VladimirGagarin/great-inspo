@@ -6,7 +6,7 @@ import { formatCount } from '../lib/format';
 export default function StormCard({ cfg }) {
   const accent = accentOf(cfg, '#1d9bf0');
   const bg = cardBackground(cfg, '#ffffff', '#000000');
-  const replies = (cfg.comments.items || []).slice(0, 2);
+  const replies = cfg.show.comments ? (cfg.comments.items || []).slice(0, 2) : [];
   const posts = [
     { name: cfg.author, handle: cfg.handle, text: cfg.body, op: true, verified: cfg.verified },
     ...replies.map((r, i) => ({ name: r.name, handle: `@${r.name.toLowerCase().replace(/[^a-z0-9]/g, '')}${i + 1}`, text: r.text, op: false, verified: Boolean(r.verified) })),

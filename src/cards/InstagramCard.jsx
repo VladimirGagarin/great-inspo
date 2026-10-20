@@ -1,4 +1,5 @@
 import { Photo, Avatar, Body} from './shared';
+import CommentList from './Comments';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Heart, CommentIcon, Send, Bookmark, Dots, Verified } from './icons';
 import { formatFull } from '../lib/format';
@@ -44,6 +45,8 @@ export default function InstagramCard({ cfg, api }) {
           <span className="sc-ig-capname">{cfg.handle.replace(/^@/, '')}</span>
           <Body text={cfg.body} />
         </div>
+
+        <CommentList cfg={cfg} variant="ig" />
 
         {cfg.show.comments && cfg.stats.comments > 0 && (
           <div className="sc-ig-viewcomments">

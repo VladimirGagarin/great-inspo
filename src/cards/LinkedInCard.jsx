@@ -1,4 +1,5 @@
 import { Photo, Avatar, Body} from './shared';
+import CommentList from './Comments';
 import { accentOf, cardBackground, cardVars } from './helpers';
 import { Globe, Dots, CommentIcon, Send, ThumbUp } from './icons';
 import { formatCount, formatFull } from '../lib/format';
@@ -60,6 +61,8 @@ export default function LinkedInCard({ cfg, api }) {
         <button type="button" style={{ color: accent }}><Send size={18} /> Repost</button>
         <button type="button"><Send size={18} /> Send</button>
       </div>
+
+      <CommentList cfg={cfg} variant="li" />
 
       <span className="sc-li-sr">{formatFull(cfg.stats.likes)} reactions</span>
     </div>

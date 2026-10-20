@@ -6,7 +6,7 @@ import { formatFull, initials, hashHue } from '../lib/format';
 export default function TumblrCard({ cfg, api }) {
   const accent = accentOf(cfg, '#36465d');
   const bg = cardBackground(cfg, '#ffffff', '#16181d');
-  const chain = cfg.comments?.items || [];
+  const chain = cfg.show.comments ? (cfg.comments?.items || []) : [];
 
   return (
     <div className={`card-root sc-tmb ${cfg.dark ? 'is-dark' : ''}`} style={cardVars(cfg, { accent, bg })}>

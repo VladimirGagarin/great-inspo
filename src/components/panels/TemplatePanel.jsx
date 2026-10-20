@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TEMPLATES } from '../../state';
+import { GREETINGS } from '../../cards/greetings';
 
 const MARKS = {
   x: '𝕏',
@@ -46,6 +47,22 @@ const MARKS = {
   wikipedia: 'W',
   resume: '▤',
   hackernews: 'Y',
+  didyouknow: '?',
+  success: '🏆',
+  christmas: '🎄',
+  eid: '☪',
+  diwali: '🪔',
+  birthday: '🎂',
+  sorry: '🙏',
+  thankyou: '❀',
+  recovery: '🌷',
+  newyear: '🎆',
+  valentine: '❤',
+  wedding: '💍',
+  goodluck: '🍀',
+  mothersday: '💐',
+  fathersday: '👔',
+  ramadan: '🌙',
 };
 
 const HUES = {
@@ -58,6 +75,9 @@ const HUES = {
   mesh: 290, noir: 0, vaporwave: 310, minimal: 220, news: 0,
   storm: 210, chat: 150, ripped: 35, visualizer: 195, vinyl: 348,
   'bounty-posty': 36, twitch: 270, github: 215, wikipedia: 205, resume: 215, hackernews: 25,
+  success: 45, christmas: 350, eid: 175, diwali: 285, birthday: 330, sorry: 220, didyouknow: 190,
+  thankyou: 30, recovery: 160, newyear: 230, valentine: 345, wedding: 42, goodluck: 135,
+  mothersday: 325, fathersday: 212, ramadan: 260,
 };
 
 export default function TemplatePanel({ cfg, api }) {
@@ -77,7 +97,12 @@ export default function TemplatePanel({ cfg, api }) {
   };
 
   const selectTemplate = (template) => {
-    api.update((c) => ({ ...c, template }));
+    const presetMsgs = Object.values(GREETINGS).map((g) => g.msg);
+    api.update((c) => ({
+      ...c,
+      template,
+      body: (!c.body.trim() || presetMsgs.includes(c.body)) && GREETINGS[template] ? GREETINGS[template].msg : c.body,
+    }));
     const templateCategory = TEMPLATES.find((item) => item.id === template)?.cat === 'aesthetic' ? 'aesthetic' : 'social';
     setCat(templateCategory);
     const url = new URL(window.location.href);
@@ -123,6 +148,7 @@ export default function TemplatePanel({ cfg, api }) {
               <b>{t.name}</b>
               <i>{t.hint}</i>
             </span>
+            {t.premium && <span className="tpl-premium">PREMIUM</span>}
           </button>
         ))}
       </div>

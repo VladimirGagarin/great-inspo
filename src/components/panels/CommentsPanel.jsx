@@ -1,6 +1,10 @@
-import { Btn, Field, TextArea, TextInput } from '../ui';
+import { Btn, Field, Switch, TextArea, TextInput } from '../ui';
 
 const NOTES = {
+  x: 'Replies render under the tweet, X style.',
+  facebook: 'Comments render as Facebook comment bubbles under the actions row.',
+  instagram: 'Comments render above the “View all” line, Instagram style.',
+  linkedin: 'Comments render as LinkedIn comment bubbles under the reactions.',
   wechat: 'Shown in the Moments comment box and the “liked by” row.',
   tumblr: 'Each entry becomes a reblog in the chain (name + message).',
   slack: 'The first entry is used as the thread replier in the replies row.',
@@ -50,6 +54,12 @@ export default function CommentsPanel({ cfg, api }) {
 
   return (
     <div className="stack">
+      <Switch
+        label="Show comments on card"
+        hint="Turn the comment preview on or off"
+        checked={cfg.show.comments}
+        onChange={(v) => api.update((c) => ({ ...c, show: { ...c.show, comments: v } }))}
+      />
       <p className="muted small">{NOTES[template] || 'Edit the comment content for this card.'}</p>
 
       {items.length === 0 && (
